@@ -1,0 +1,437 @@
+<!DOCTYPE HTML>
+<html lang="ja">
+<head>
+<title>コンピュータサイエンス入門</title>
+<style><!--
+body { line-height: 1.5; }
+table { border-collapse: collapse; }
+td { padding: 0.2em; }
+.td1 { padding: 1em; text-align: center; }
+.module { border: 1pt solid; padding: 0.5em; text-align: center; }
+--></style>
+</head>
+<body>
+<h1>コンピュータサイエンス入門</h1>
+
+<h2>コンピュータの原理</h2>
+<p>
+おそろしく単純な動作 (後述) を大量に組み合わせて、複雑な処理をおこなう。
+<ul>
+<li> 単純な操作 × 膨大な数 = 複雑な処理
+</ul>
+
+<h2>4つの装置</h2>
+<p>
+すべてのコンピュータは
+以下の4つの装置から成り立っている。
+
+<div class=figure>
+  <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="400" height="130">
+    <g stroke="black" stroke-width="2" fill="none">
+      <rect x="10" y="10" width="80" height="40" />
+      <rect x="120" y="10" width="80" height="40" />
+      <rect x="230" y="10" width="80" height="40" />
+      <rect x="120" y="80" width="80" height="40" />
+      <line x1="90" y1="30" x2="120" y2="30" />
+      <line x1="200" y1="30" x2="230" y2="30" />
+      <line x1="160" y1="50" x2="160" y2="80" />
+    </g>
+    <g style="dominant-baseline:central;" text-anchor="middle">
+      <text x="50" y="30">入力装置</text>
+      <text x="160" y="30">演算装置</text>
+      <text x="270" y="30">出力装置</text>
+      <text x="160" y="100">記憶装置</text>
+    </g>
+  </svg>
+</div>
+
+<ul>
+<li> 入力装置 … マウス、キーボードなど
+<li> 出力装置 … 画面、スピーカなど
+<li> 記憶装置 … メモリ、ハードディスクなど
+</ul>
+
+<p>
+スマートフォンも炊飯器もエレベータも、やっていることは一緒。<br>
+コンピュータにしてみれば、入力装置から来た情報を
+あれこれ処理して、出力装置に渡しているにすぎない。
+
+<ul>
+<li> 炊飯器の場合: 入力装置・出力装置は?
+<li> エレベータの場合: 入力装置・出力装置は?
+</ul>
+
+<p>
+装置の間で渡されるすべての情報は、
+<u>2種類の異なる状態</u>の組み合わせで表される。
+<ul>
+<li> 電圧の高(5V)／低(0V)
+<li> スイッチの入／切
+<li> 0 と 1
+</ul>
+
+
+<h2>すべての情報を0と1であらわす</h2>
+<p>
+数字、文字、画像、音声などをコンピュータで扱うためには、
+これらの情報をすべて 0 と 1 だけで表す必要がある。
+
+<h3>数値を0と1であらわす</h3>
+<ul>
+<li> アホな方法A: 
+<code>1</code>, <code>11</code>, <code>111</code>, <code>1111</code>, <code>11111</code>, ...
+<li> アホな方法B: 
+<code>0</code>, <code>1</code>, <code>0</code>, <code>1</code>, <code>0</code>, <code>1</code>, <code>0</code>, ...
+</ul>
+<p>
+我々がふだん使っている数 (10進数) は 「12345」を表すのに
+1万文字を書いたりする必要はない。<br>
+「桁上がり」の考え方。
+<a href="counter.html">[カウンタ]</a>
+
+<ul>
+<li> 10進数
+<li> 8進数
+<li> 2進数
+</ul>
+
+<h3>2進数における加算</h3>
+<ul>
+<li> 11 + 110 = ?
+</ul>
+
+<h3>2進数における乗算</h3>
+<ul>
+<li> 11 × 101 = ?
+</ul>
+
+<h3>用語</h3>
+<ul>
+<li> 1<u>ビット</u> (bit) …
+  2進数における1桁の「0か/1か」の情報。
+<li> 1<u>バイト</u> (byte) …
+  8ビット = 8桁の2進数で表せる情報 (256通り)。
+</ul>
+
+<h2>バスとクロック</h2>
+<p>
+実際には、コンピュータの各装置は次のように接続されている。
+
+<div class=figure>
+  <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="430" height="120">
+    <g stroke="black" stroke-width="2" fill="none">
+      <rect x="10" y="10" width="80" height="40" />
+      <rect x="120" y="10" width="80" height="40" />
+      <rect x="230" y="10" width="80" height="40" />
+      <rect x="340" y="10" width="80" height="40" />
+      <line x1="45" y1="80" x2="45" y2="50" />
+      <line x1="155" y1="80" x2="155" y2="50" />
+      <line x1="265" y1="80" x2="265" y2="50" />
+      <line x1="375" y1="80" x2="375" y2="50" />
+      <line x1="10" y1="80" x2="420" y2="80" />
+      <line x1="55" y1="90" x2="55" y2="50" />
+      <line x1="165" y1="90" x2="165" y2="50" />
+      <line x1="275" y1="90" x2="275" y2="50" />
+      <line x1="385" y1="90" x2="385" y2="50" />
+      <line x1="10" y1="90" x2="420" y2="90" />
+    </g>
+    <g style="dominant-baseline:central;" text-anchor="middle">
+      <text x="50" y="30">入力装置</text>
+      <text x="160" y="30">演算装置</text>
+      <text x="270" y="30">記憶装置</text>
+      <text x="380" y="30">出力装置</text>
+      <text x="210" y="110">バス</text>
+    </g>
+  </svg>
+</div>
+
+<dl>
+<dt> <u>バス</u>
+<dd> 情報を通すための線。複数の装置が接続されていることが多い。
+<dt> <u>クロック</u>
+<dd> 同期信号。
+  すべての情報をバスで一度に送ることはできず、分けて送る。<br>
+  このとき、<u>クロック</u> を使って同期する。
+</dl>
+
+<div class=figure>
+  <svg xmlns="http://www.w3.org/2000/svg" 
+       xmlns:xlink="http://www.w3.org/1999/xlink"
+       version="1.1" width="740" height="120">
+    <symbol id="unit" viewBox="0 0 40 30" stroke="black" fill="none">
+      <path d="M 0 30 L 5 0 L 35 0 L 40 30 Z" />
+    </symbol>
+    <g transform="translate(100,10)" stroke-width="2">
+      <text x="-30" y="30" text-anchor="end">クロック</text>
+      <use xlink:href="#unit" x="0" y="0" width="40" height="30" />
+      <use xlink:href="#unit" x="80" y="0" width="40" height="30" />
+      <use xlink:href="#unit" x="160" y="0" width="40" height="30" />
+      <use xlink:href="#unit" x="240" y="0" width="40" height="30" />
+      <use xlink:href="#unit" x="320" y="0" width="40" height="30" />
+      <use xlink:href="#unit" x="400" y="0" width="40" height="30" />
+      <use xlink:href="#unit" x="480" y="0" width="40" height="30" />
+      <use xlink:href="#unit" x="560" y="0" width="40" height="30" />
+      <line x1="-20" y1="30" x2="620" y2="30" stroke="black" />
+    </g>
+    <g transform="translate(100,60)" stroke-width="2">
+      <text x="-30" y="30" text-anchor="end">バス</text>
+      <use xlink:href="#unit" x="0" y="0" width="40" height="30" />
+      <use xlink:href="#unit" x="160" y="0" width="40" height="30" />
+      <use xlink:href="#unit" x="400" y="0" width="40" height="30" />
+      <use xlink:href="#unit" x="480" y="0" width="40" height="30" />
+      <line x1="-20" y1="30" x2="620" y2="30" stroke="black" />
+    </g>
+      <g transform="translate(120,110)">
+	<text x="0" y="0" text-anchor="middle">1</text>
+	<text x="80" y="0" text-anchor="middle">0</text>
+	<text x="160" y="0" text-anchor="middle">1</text>
+	<text x="240" y="0" text-anchor="middle">0</text>
+	<text x="320" y="0" text-anchor="middle">0</text>
+	<text x="400" y="0" text-anchor="middle">1</text>
+	<text x="480" y="0" text-anchor="middle">1</text>
+	<text x="560" y="0" text-anchor="middle">0</text>
+      </g>
+    </g>
+  </svg>
+</div>
+
+<p>
+1秒間あたりのクロックの拍数 (Hz) を、動作周波数という。
+
+<h2>記憶装置</h2>
+<p>
+記憶装置には半導体による主記憶装置 (メモリ) と
+磁気を使った二次記憶装置 (ハードディスクなど) がある。<br>
+メモリはハードディスクの約100,000倍速い。
+<p>
+たとえば、100ビットのメモリは 
+100個の 0 または 1 を記憶することができる。
+
+<div class=figure>
+  <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="400" height="220">
+    <g stroke="black" stroke-width="2" fill="none">
+      <rect x="10" y="10" width="100" height="200" />
+      <rect x="210" y="10" width="100" height="200" />
+      <line x1="110" y1="30" x2="210" y2="30" />
+      <line x1="110" y1="40" x2="210" y2="40" />
+      <line x1="110" y1="50" x2="210" y2="50" />
+      <line x1="110" y1="60" x2="210" y2="60" />
+      <line x1="110" y1="70" x2="210" y2="70" />
+      <line x1="110" y1="80" x2="210" y2="80" />
+      <line x1="110" y1="90" x2="210" y2="90" />
+      <line x1="110" y1="130" x2="210" y2="130" />
+      <line x1="110" y1="170" x2="210" y2="170" />
+      <line x1="110" y1="200" x2="210" y2="200" />
+    </g>
+    <g style="dominant-baseline:central;" text-anchor="middle">
+      <text x="60" y="110">演算装置</text>
+      <text x="260" y="110">メモリ</text>
+      <text x="160" y="20" style="font-size:80%;">アドレスバス</text>
+      <text x="160" y="120" style="font-size:80%;">データバス</text>
+      <text x="160" y="160" style="font-size:80%;">読み出し要求</text>
+      <text x="160" y="190" style="font-size:80%;">書き込み要求</text>
+    </g>
+  </svg>
+</div>
+
+<h3>メモリからデータを読み込む手順</h3>
+<ol>
+<li> 演算装置が、メモリ上の指定位置を 2進数でアドレスバスに出力する。
+<li> データ読み出し要求信号を 1 にする。
+<li> メモリが、データバスに 0 か 1 かを出力する。
+</ol>
+
+<h3>メモリにデータを書き込む手順</h3>
+<ol>
+<li> 演算装置が、メモリ上の指定位置を 2進数でアドレスバスに出力する。
+<li> 演算装置が、データバスに 0 か 1 かを出力する。
+<li> データ書き込み要求信号を 1 にする。
+<li> メモリにデータが記憶される。
+</ol>
+
+
+<h2>演算装置</h2>
+
+<p>
+演算装置の役割…
+入力装置から来た 0/1 をうまいこと処理して、出力装置に渡すこと。
+
+<h3>論理回路</h3>
+
+<div class=figure>
+  <svg xmlns="http://www.w3.org/2000/svg" 
+       xmlns:xlink="http://www.w3.org/1999/xlink"
+       version="1.1" width="400" height="120">
+    <g stroke="black" fill="none" stroke-width="2">
+      <symbol id="and" viewBox="0 0 100 100">
+	<path d="M 0,10 C 50,10 100,10 100,50 C 100,90 50,90 0,90 Z" />
+      </symbol>
+      <symbol id="or" viewBox="0 0 100 100">
+	<path d="M 0,0 C 30,0 80,10 100,50 C 80,90 30,100 0,100 C 20,80 20,20 0,0 Z" />
+      </symbol>
+      <symbol id="not" viewBox="0 0 100 100">
+	<polygon points="0,0 90,50 0,100" />
+	<circle cx="95" cy="50" r="5" />
+      </symbol>
+      <use xlink:href="#and" x="20" y="0" width="80" height="80" />
+      <use xlink:href="#or" x="150" y="0" width="80" height="80" />
+      <use xlink:href="#not" x="300" y="10" width="60" height="60" />
+      <line x1="0" y1="20" x2="20" y2="20" />
+      <line x1="0" y1="60" x2="20" y2="60" />
+      <line x1="100" y1="40" x2="120" y2="40" />
+      <line x1="140" y1="20" x2="160" y2="20" />
+      <line x1="140" y1="60" x2="160" y2="60" />
+      <line x1="230" y1="40" x2="250" y2="40" />
+      <line x1="280" y1="40" x2="300" y2="40" />
+      <line x1="360" y1="40" x2="380" y2="40" />
+    </g>
+    <g text-anchor="middle">
+      <text x="40" y="110">AND回路</text>
+      <text x="190" y="110">OR回路</text>
+      <text x="340" y="110">NOT回路</text>
+    </g>
+  </svg>
+</div>
+
+<ul>
+<li> AND回路 … どちらかが 0 ならば 0 (どちらも 1 ならば 1)。
+<li> OT回路 … どちらかが 1 ならば 1 (どちらも 0 ならば 0)。
+<li> NOT回路 … 1ならば0、 0ならば1。
+</ul>
+
+<h4>例</h4>
+<p>
+これは何をする回路か?
+<div class=figure>
+  <svg xmlns="http://www.w3.org/2000/svg" 
+       xmlns:xlink="http://www.w3.org/1999/xlink"
+       version="1.1" width="400" height="220">
+    <g stroke="black" fill="none" stroke-width="2">
+      <symbol id="and" viewBox="0 0 100 100">
+	<path d="M 0,10 C 50,10 100,10 100,50 C 100,90 50,90 0,90 Z" />
+      </symbol>
+      <symbol id="or" viewBox="0 0 100 100">
+	<path d="M 0,0 C 30,0 80,10 100,50 C 80,90 30,100 0,100 C 20,80 20,20 0,0 Z" />
+      </symbol>
+      <symbol id="not" viewBox="0 0 100 100">
+	<polygon points="0,0 90,50 0,100" />
+	<circle cx="95" cy="50" r="5" />
+      </symbol>
+      <use xlink:href="#not" x="60" y="10" width="40" height="40" />
+      <line x1="10" y1="30" x2="60" y2="30" />
+      <line x1="100" y1="30" x2="120" y2="30" />
+      <circle cx="80" cy="100" r="3" fill="black" stroke="none" />
+      <polyline points="80,100 80,60 120,60" />
+      <use xlink:href="#and" x="120" y="15" width="60" height="60" />
+      <line x1="180" y1="45" x2="250" y2="45" />
+      <use xlink:href="#not" x="60" y="110" width="40" height="40" />
+      <line x1="10" y1="100" x2="120" y2="100" />
+      <circle cx="50" cy="30" r="3" fill="black" stroke="none" />
+      <polyline points="50,30 50,130 60,130" />
+      <line x1="100" y1="130" x2="120" y2="130" />
+      <use xlink:href="#and" x="120" y="85" width="60" height="60" />
+      <polyline points="180,115 210,115 210,75 250,75" />
+      <use xlink:href="#or" x="240" y="30" width="60" height="60" />
+      <line x1="300" y1="60" x2="330" y2="60" />
+      <use xlink:href="#and" x="240" y="150" width="60" height="60" />
+      <line x1="300" y1="180" x2="330" y2="180" />
+      <circle cx="40" cy="100" r="3" fill="black" stroke="none" />
+      <polyline points="40,100 40,165 240,165" />
+      <circle cx="30" cy="30" r="3" fill="black" stroke="none" />
+      <polyline points="30,30 30,195 240,195" />
+    </g>
+  </svg>
+</div>
+
+<h3>プログラム</h3>
+<p>
+プログラムする … 配線を変更して、
+コンピュータに別の処理をさせること。
+
+<div class=figure>
+<img src="eniac.jpg">
+</div>
+
+<h3>ストアード・プログラム方式</h3>
+<p>
+プログラムをいくつかの<u>命令語</u>の列によって表現し、
+それを<u>実行</u>することにより処理する。
+(命令語の列は、記憶装置に入れておく。)
+<p>
+制御装置…
+演算装置の一部で、命令語を実行する部分。
+
+<ul>
+<li> 2つの値を足す。
+<li> メモリ上のある値を別の場所にコピーする。
+<li> 繰り返し処理をおこなう。
+<li> …
+</ul>
+
+<div class=figure>
+  <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="400" height="180">
+    <g stroke="black" stroke-width="2" fill="none">
+      <rect x="10" y="10" width="100" height="160" />
+      <rect x="210" y="10" width="100" height="160" />
+      <rect x="220" y="70" width="80" height="40" />
+      <rect x="220" y="120" width="80" height="40" />
+      <line x1="110" y1="90" x2="210" y2="90" stroke-width="8" />
+    </g>
+    <g text-anchor="middle">
+      <text x="60" y="40">演算装置</text>
+      <text x="260" y="40">メモリ</text>
+      <text x="260" y="90" style="font-size:80%;">プログラム</text>
+      <text x="260" y="140" style="font-size:80%;">データ</text>
+    </g>
+  </svg>
+</div>
+
+<h4>命令語の例</h4>
+<blockquote style="font-size:80%; background:#eeeeee;"><pre>
+  00401066: 57                 push        edi
+  00401067: 33 FF              xor         edi,edi
+  00401069: 85 DB              test        ebx,ebx
+  0040106B: 7E 26              jle         00401093
+  0040106D: 8B F5              mov         esi,ebp
+  0040106F: 8B 6C 24 18        mov         ebp,dword ptr [esp+18h]
+  00401073: 2B E8              sub         ebp,eax
+  00401075: 8B 0C 2E           mov         ecx,dword ptr [esi+ebp]
+  ...
+</pre></blockquote>
+
+
+<p>
+効率は悪いが、プログラムを書き換えるのが簡単。
+
+<ul>
+<li> <u>ハードウェア</u> (hardware) … 書き換えられない部分 (機械)。
+<li> <u>ソフトウェア</u> (software) … 書き換えられる部分 (データ)。
+</ul>
+
+<p>
+ハードウェアはますます一般化し、
+ソフトウェアが重要な時代になっている。
+
+<h2>単位の表し方</h2>
+<p>
+現在のコンピュータは、1秒間に約1,000,000,000回の信号を処理できる。<br>
+これは、1回の処理に 0.000 000 001秒かかることを意味する。
+<p>
+<table border>
+<tr><td>キロ (K)</td><td align=right>1,000倍</td></tr>
+<tr><td>メガ (M)</td><td align=right>1,000,000倍</td></tr>
+<tr><td>ギガ (G)</td><td align=right>1,000,000,000倍</td></tr>
+<tr><td></td><td></td></tr>
+<tr><td>ミリ (m)</td><td align=right>1,000分の1</td></tr>
+<tr><td>マイクロ (&micro;)</td><td align=right>1,000,000分の1</td></tr>
+<tr><td>ナノ (n)</td><td align=right>1,000,000,000分の1</td></tr>
+</table>
+
+<h3>例</h3>
+<ul>
+<li> 一般的なパソコンの動作周波数 … 1GHz。
+<li> 1回の処理にかかる時間 … 1ナノ秒。
+<li> メモリの容量 … 4Gバイト。
+<li> ハードディスクの容量 … 200Gバイト。
+<li> 日本から欧米までのネットワーク遅延 … 150ミリ秒。
+</ul>

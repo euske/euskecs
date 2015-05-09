@@ -1,0 +1,466 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+<head>
+<style><!--
+body { line-height: 1.5; }
+h2 { font-size: 120%; border-bottom: 2pt solid; }
+ul { margin-bottom: 0.5em; }
+dd { margin-bottom: 0.5em; }
+.pb { page-break-before: always; }
+.css { background: #ffffcc; }
+.typed { background: #eeeeee; }
+--></style>
+<title>HTML/CSS入門</title>
+<body>
+<h1>HTML/CSS入門</h1>
+
+<h2>HTMLとは</h2>
+<p>
+Hyper Text Markup Language の略。
+Webページの記述に用いられる。
+基本的には XML (Extensible Markup Language) の一種。
+<ul>
+<li> <u>テキストファイル</u>。(メモ帳で編集可)
+<li> 文書の<u>構造</u>を記述する。
+<li> 文書の<u>見た目は記述しない</u>。
+</ul>
+<p>
+<a href="http://www.tohoho-web.com/www.htm">とほほのWWW入門</a>
+
+<h3>XMLとは</h3>
+<ul>
+<li> 「<u>マークアップ言語</u>」である。
+<li> 「入れ子構造」をもつ。
+<li> データの書き方の <u>標準</u> (standard) を確立することで、
+異なるプログラムが同じデータを使えるようにする。
+</ul>
+<div style="border:solid 1px; padding: 4px; background: #ddffdd">
+&lt;タグ1&gt;<br>
+<div style="margin:1em;">
+<em>...タグ1がマークアップする範囲...</em>
+</div>
+<div style="border:solid 1px; padding: 4px; margin: 1em; background: #ffddff">
+&lt;タグ2&gt;<br>
+<em>...タグ2がマークアップする範囲...</em><br>
+&lt;/タグ2&gt;
+</div>
+&lt;/タグ1&gt;<br>
+</div>
+<p>
+タグで囲まれた部分を<u>マークアップされた部分</u>と呼ぶ。
+また、このタグを含めた部分を<u>要素</u>と呼ぶ。
+
+<h3>HTML以外のXMLの用途</h3>
+<ul>
+<li> SVG (図形を記述する)
+<li> MathML (数式を記述する)
+<li> GML (地図を記述する)
+<li> XUL (ボタンやラベルなどのUIを記述する)
+</ul>
+<p>
+<a href="https://en.wikipedia.org/wiki/List_of_XML_markup_languages">XMLを使った言語の一覧</a>
+
+<h2 class=pb>HTMLの基本的な構造</h2>
+<h3>お約束</h3>
+<blockquote class=typed><pre>
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;
+      <em>タイトル</em>
+    &lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    <em>内容</em>
+  &lt;/body&gt;
+&lt;/html&gt;
+</pre></blockquote>
+
+<h3>改行は無視される</h3>
+<p>
+以下の2つは同じ結果になる:
+<blockquote class=typed><pre>
+Hello World
+</pre></blockquote>
+<blockquote class=typed><pre>
+Hello
+World
+</pre></blockquote>
+<h4>表示結果:</h4>
+<blockquote>
+Hello 
+World
+</blockquote>
+
+<h3>HTML/XMLタグ</h3>
+<h4>開始と終了がある場合:</h4>
+<table>
+<tr>
+<td align=center colspan="3">開始タグ</td>
+<td></td>
+<td align=center colspan="4">終了タグ</td>
+</t>
+<tr valign=top>
+<td><code>&lt;</code></td>
+<td><code><strong>title</strong></code><br><span style="font-size: 75%;">タグ名</span></td>
+<td><code>&gt;</code></td>
+<td>...</td>
+<td><code>&lt;</code></td>
+<td><code>/</code></td>
+<td><code><strong>title</strong></code><br><span style="font-size: 75%;">タグ名<br>(同じ)</span></td>
+<td><code>&gt;</code></td>
+</tr>
+</table>
+
+<h4>中身が空な場合:</h4>
+<table>
+<tr>
+<td align=center colspan="4">空要素タグ</td>
+</tr>
+<tr valign=top>
+<td><code>&lt;</code></td>
+<td><code><strong>hr</strong></code><br><span style="font-size: 75%;">タグ名</span></td>
+<td><code>/</code></td>
+<td><code>&gt;</code></td>
+</tr>
+</table>
+
+<h2 class=pb>よく使うHTMLタグ</h2>
+<h3>見出しと段落</h3>
+<ul>
+<li> 段落 (paragraph): <code>&lt;p&gt;</code> ... <u><code>&lt;/p&gt;</code></u> 
+  (終了タグは省略可能)
+<li> レベル1見出し: <code>&lt;h1&gt;</code> ... <code>&lt;/h1&gt;</code> (headline)
+<li> レベル2見出し: <code>&lt;h2&gt;</code> ... <code>&lt;/h2&gt;</code>
+<li> レベル3見出し: <code>&lt;h3&gt;</code> ... <code>&lt;/h3&gt;</code>
+<li> レベル4見出し: <code>&lt;h4&gt;</code> ... <code>&lt;/h4&gt;</code>
+<li> レベル5見出し: <code>&lt;h5&gt;</code> ... <code>&lt;/h5&gt;</code>
+<li> レベル6見出し: <code>&lt;h6&gt;</code> ... <code>&lt;/h6&gt;</code>
+</ul>
+
+<blockquote>
+<p>段落</p>
+<div style="font-size:200%;">レベル1見出し</div>
+<div style="font-size:180%;">レベル2見出し</div>
+<div style="font-size:160%;">レベル3見出し</div>
+<div style="font-size:140%;">レベル4見出し</div>
+<div style="font-size:120%;">レベル5見出し</div>
+<div style="font-size:100%;">レベル6見出し</div>
+</blockquote>
+
+<h3>箇条書き</h3>
+<blockquote class=typed><pre>
+&lt;ul&gt;
+&lt;li&gt; 項目1
+&lt;li&gt; 項目2
+&lt;li&gt; 項目3
+&lt;/ul&gt;
+</pre></blockquote>
+<blockquote>
+<ul>
+<li> 項目1
+<li> 項目2
+<li> 項目3
+</ul>
+</blockquote>
+
+<h3>強調、下線、斜体</h3>
+<blockquote class=typed><pre>
+&lt;b&gt;強調 (bold)&lt;/b&gt;, &lt;u&gt;下線 (underline)&lt;/u&gt;, &lt;i&gt;斜体 (italic)&lt;/i&gt;
+</pre></blockquote>
+<blockquote>
+<b>強調 (bold)</b>, <u>下線 (underline)</u>, <i>斜体 (italic)</i>
+</blockquote>
+<p>
+このような「見た目」の情報をHTMLに入れるのはあまりよくないとされる。
+
+<h3 class=pb>ソースコードなど</h3>
+<blockquote class=typed><pre>
+&lt;pre&gt;
+  int main(void) 
+  {
+     printf("Hello, World\n");
+  }
+&lt;/pre&gt;
+</pre></blockquote>
+<blockquote>
+<pre>
+  int main(void) 
+  {
+     printf("Hello, World\n");
+  }
+</pre>
+</blockquote>
+
+<h3>コメント</h3>
+<blockquote><pre>
+&lt;!-- この部分は表示されない --&gt;
+</pre></blockquote>
+
+<h3>画像</h3>
+<blockquote class=typed><pre>
+これは &lt;img src="image.jpg" alt="キャピタルドームの写真" /&gt; です。
+</pre></blockquote>
+<blockquote>
+これは <img src="image.jpg" alt="キャピタルドームの写真" /> です。
+</blockquote>
+
+<h3>リンク</h3>
+<blockquote class=typed><pre>
+&lt;a href="http://www.yahoo.co.jp/"&gt;Yahoo! Japan&lt;/a&gt;へのリンク
+</pre></blockquote>
+<blockquote>
+<a href="http://www.yahoo.co.jp/">Yahoo! Japan</a>へのリンク
+</blockquote>
+
+<h3>改行</h3>
+<blockquote class=typed><pre>
+ここで
+改&lt;br/&gt;行
+</pre></blockquote>
+<blockquote>
+ここで
+改<br>行
+</blockquote>
+
+<h2 class=pb>表の書き方</h2>
+<h3>使用するタグ</h3>
+<ul>
+<li> <code>&lt;table&gt;</code> 〜 <code>&lt;/table&gt;</code> :
+  表の開始と終了。
+<li> <code>&lt;tr&gt;</code> 〜 <code>&lt;/tr&gt;</code> :
+  表の1行。
+<li> <code>&lt;td&gt;</code> 〜 <code>&lt;/td&gt;</code> :
+  1つのセル。
+<li> <code>&lt;th&gt;</code> 〜 <code>&lt;/th&gt;</code> :
+  1つのセル (見出し用)。
+</ul>
+<blockquote class=typed><pre>
+&lt;table border&gt;
+  &lt;tr&gt;&lt;!-- 見出し行 --&gt;
+    &lt;th&gt;1列目&lt;/th&gt;
+    &lt;th&gt;2列目&lt;/th&gt;
+    &lt;th&gt;3列目&lt;/th&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;&lt;!-- 1行目 --&gt;
+    &lt;td&gt;(1行目 1列目)&lt;/td&gt;
+    &lt;td&gt;(1行目 2列目)&lt;/td&gt;
+    &lt;td&gt;(1行目 3列目)&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;&lt;!-- 2行目 --&gt;
+    &lt;td&gt;(2行目 1列目)&lt;/td&gt;
+    &lt;td&gt;(2行目 2列目)&lt;/td&gt;
+    &lt;td&gt;(2行目 3列目)&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;
+</pre></blockquote>
+<blockquote>
+<table border>
+  <tr><!-- 見出し行 -->
+    <th>1列目</th>
+    <th>2列目</th>
+    <th>3列目</th>
+  </tr>
+  <tr><!-- 1行目 -->
+    <td>(1行目 1列目)</td>
+    <td>(1行目 2列目)</td>
+    <td>(1行目 3列目)</td>
+  </tr>
+  <tr><!-- 2行目 -->
+    <td>(2行目 1列目)</td>
+    <td>(2行目 2列目)</td>
+    <td>(2行目 3列目)</td>
+  </tr>
+</table>
+</blockquote>
+
+<h2 class=pb>CSSとは</h2>
+<p>
+Cascading Style Sheet の略。単に「スタイルシート」とも呼ばれる。
+各HTMLタグがマークアップする部分の見た目を指定する。
+<h4>例:</h4>
+<blockquote class=typed><pre>
+&lt;p style="<span class=css>color:blue;</span>"&gt;
+  ここは青
+&lt;/p&gt;
+&lt;p style="<span class=css>color:red;</span>"&gt;
+  ここは赤
+&lt;/p&gt;
+&lt;p&gt;
+  ここは?
+&lt;/p&gt;
+</pre></blockquote>
+<blockquote>
+<p style="color:blue;">
+  ここは青
+</p>
+<p style="color:red;">
+  ここは赤
+</p>
+<p>
+  ここは?
+</p>
+</blockquote>
+
+<h3>タグの属性</h3>
+<p>
+HTML(XML)の開始タグには属性がある場合がある。
+<blockquote><pre>
+&lt;<em>タグ名</em> <em>属性名1</em>="<em>値1</em>"
+        <em>属性名2</em>="<em>値2</em>"
+        ...&gt;
+</pre></blockquote>
+
+<h4>よく使われる属性:</h4>
+<dl>
+<dt> <code>style="<em>CSS指定</em>"</code> 
+<dd> そのタグのCSSを直接指定する。
+<dt> <code>class="<em>クラス</em>"</code> 
+<dd> そのタグのクラスを指定する。(後述)
+</dl>
+
+<h3 class=pb>よく使われるCSS指定</h3>
+<h4>書き方:</h4>
+<blockquote class=typed><pre>
+<u>CSS指定名</u>: <u>値</u>;
+</pre></blockquote>
+
+<dl>
+<dt> <code>color</code>
+<dd> 要素の色を指定する。
+  <ul>
+    <li> <code>color: red;</code>
+      <div style="color:red;">例</div>
+    <li> <code>color: #ff88cc;</code>
+      <div style="color:#ff88cc;">例</div>
+  </ul>
+<dt> <code>background</code>
+<dd> 要素のバックグラウンドを指定する。
+  <ul>
+    <li> <code>background: blue;</code>
+      <div style="background:blue;">例</div>
+  </ul>
+<dt> <code>margin</code> 
+<dd> 要素のまわりの余白を指定する。
+  <ul>
+    <li> <code>margin: 10px;</code>
+      <div style="margin: 10px;">例</div>
+    <li> <code>margin-bottom: 1em;</code>
+      <div style="margin-bottom: 1em;">例</div>
+  </ul>
+<dt> <code>border</code>
+<dd> 要素のまわりの枠線を指定する。
+  <ul>
+    <li> <code>border: 1px solid red;</code>
+      <div style="border: 1px solid red;">例</div>
+    <li> <code>border-bottom: 2px solid black;</code>
+      <div style="border-bottom: 2px solid black;">例</div>
+  </ul>
+<dt> <code>font-size</code>
+<dd> 文字の大きさを指定する。
+  <ul>
+    <li> <code>font-size: 150%;</code>
+      <div style="font-size: 150%;">例</div>
+  </ul>
+<dt> <code>page-break-before</code> 
+<dd> この要素の前で改ページを指定する。
+  <ul>
+    <li> <code>page-break-before: always;</code>
+  </ul>
+</dl>
+
+<h4>単位の書き方:</h4>
+<dl>
+<dt> px
+<dd> ピクセル。(例: <code>10px</code> など)
+ あまり使うべきではない。
+<dt> %
+<dd> 文字あるいは要素の大きさに対する比率。
+<dt> em
+<dd> <code>1em</code> = 1文字分の大きさ。
+</dl>
+
+<h3 class=pb>複数のタグをまとめて指定する</h3>
+<p>
+本来 CSS は別のファイルとして指定することもできるのだが、
+ここでは HTML ファイルの中に埋め込む。
+<blockquote class=typed><pre>
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+<span class=css>    &lt;style&gt;
+      <em>CSS</em>
+    &lt;/style&gt;</span>
+    &lt;title&gt;
+      <em>タイトル</em>
+    &lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    <em>内容</em>
+  &lt;/body&gt;
+&lt;/html&gt;
+</pre></blockquote>
+
+<dl>
+<dt> <code><em>タグ名</em> { <em>CSS指定</em>; ... }</code>
+<dd> 指定したタグすべてに CSS を指定する。
+
+<dt> <code>.<em>クラス名</em> { <em>CSS指定</em>; ... }</code>
+<dd> 指定したクラスのタグに CSS を指定する。
+
+<dt> <code><em>タグ名</em>.<em>クラス名</em> { <em>CSS指定</em>; ... }</code>
+<dd> 指定したタグの指定したクラスに CSS を指定する。
+</dl>
+
+<h4>例:</h4>
+<blockquote class=typed><pre>
+&lt;style&gt;
+h2 { font-size: 120%; border-bottom: 2pt solid; }
+ul { margin-bottom: 0.5em; }
+.pb { page-break-before: always; }
+.css { background: #ffffcc; }
+.typed { background: #eeeeee; }
+&lt;/style&gt;
+</pre></blockquote>
+
+<h2>その他</h2>
+<h3>CSS用のタグ</h3>
+<code>&lt;div&gt;</code>タグ、
+<code>&lt;span&gt;</code>タグは、
+単体では何もしない。
+これはもっぱら CSS を適用するのに使う。
+<ul>
+<li> <code>&lt;div&gt;</code>〜<code>&lt;/div&gt;</code> … 改行あり (ブロック要素)
+<li> <code>&lt;span&gt;</code>〜<code>&lt;/span&gt;</code> … 改行なし (インライン要素)
+</ul>
+<h4>例:</h4>
+<blockquote class=typed><pre>
+&lt;div style="background: yellow; margin: 1em;"&gt;
+Hello, &lt;span style="font-size: 200%; color: green"&gt;World&lt;/span&gt;
+&lt;/div&gt;
+</pre></blockquote>
+<blockquote>
+<div style="background: yellow; margin: 1em;">
+Hello, <span style="font-size: 200%; color: green">World</span>
+</div>
+</blockquote>
+
+<h3>HTMLエンティティ</h3>
+<p>
+<code>&lt;</code>, <code>&gt;</code>, <code>&amp;</code> などの
+特殊な記号は、以下のようにして表現する。
+<ul>
+<li> <code>&lt;</code> … <code>&amp;lt;</code>
+<li> <code>&gt;</code> … <code>&amp;gt;</code>
+<li> <code>&amp;</code> … <code>&amp;amp;</code>
+</ul>
+<p>
+他にもいくつかの記号が利用できる:
+<ul>
+<li> <code>&rarr;</code> … <code>&amp;rarr;</code>
+<li> <code>&divide;</code> … <code>&amp;divide;</code>
+<li> <code>&alpha;</code> … <code>&amp;alpha;</code>
+<li> <code>&eacute;</code> … <code>&amp;eacute;</code>
+<li> <code>&copy;</code> … <code>&amp;copy;</code>
+<li> 任意の Unicode文字 … <code>&amp;#<em>番号</em></code>
+</ul>

@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<style><!--
+body { line-height: 1.5; }
+h2 { font-size: 120%; border-bottom: 2pt solid; }
+ul { margin-bottom: 0.5em; }
+dd { margin-bottom: 0.5em; }
+p { margin: 0; }
+b { color: red; font-weight: bold; text-decoration: underline; }
+.pb { page-break-before: always; }
+code, .t { background: #eeeeee; }
+--></style>
+<title>SVG入門</title>
+<body>
+<h1>SVG入門</h1>
+<p>
+新山 祐介
+
+<h2>SVGとは</h2>
+<p>
+Scalable Vector Graphics の略。
+現在はメジャーなブラウザでサポートされている。
+XMLの一種。
+
+<h2>基本構造</h2>
+<h4>XHTMLの一部として埋め込む方法:</h4>
+<blockquote class=t><pre>
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+  &lt;p&gt; ふつうの文章。
+  &lt;svg xmlns="http://www.w3.org/2000/svg" 
+       xmlns:xlink="http://www.w3.org/1999/xlink"
+       version="1.1" width="300" height="120"&gt;
+    &lt;rect x="10" y="10" width="200" height="100" fill="none" stroke="black" /&gt;
+    &lt;text x="110" y="60" text-anchor="middle"&gt;よう&lt;/text&gt;
+  &lt;/svg&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre></blockquote>
+<h4>出力例:</h4>
+<blockquote>
+  <p> ふつうの文章。
+  <svg xmlns="http://www.w3.org/2000/svg" 
+       xmlns:xlink="http://www.w3.org/1999/xlink"
+       version="1.1" width="300" height="120">
+    <rect x="10" y="10" width="200" height="100" fill="none" stroke="black" />
+    <text x="110" y="60" text-anchor="middle">よう</text>
+  </svg>
+</blockquote>
+
+<ul>
+<li> XHTMLは <code>&lt;!DOCTYPE html&gt;</code> で始めなければならない。
+<li> 図形の大きさを <code>width</code> と <code>height</code> で指定する。
+<li> 単位は通常ピクセル (px) を使用する。
+</ul>
+
+<h3>画像として使用する</h3>
+<p>
+SVGは、HTMLの <code>&lt;img src="..."&gt;</code> タグの画像として利用することもできる。
+<blockquote class=t><pre>
+&lt;img src="octocat.svg" alt="オクトキャット" width="100" /&gt;
+</pre></blockquote>
+<h4>出力例:</h4>
+<blockquote>
+<img src="octocat.svg" alt="オクトキャット" width="100" />
+</blockquote>
+
+<h2>XML名前空間について</h2>
+<p>
+XMLでは、複数の異なる規格が、ひとつの文書中に混在することがある。
+<p>
+各タグや属性がどの規格に従って解釈されるべきかを区別するために、
+タグ名や属性に「名前空間 (namespace)」がついている。
+
+<div style="border: 1px solid black; padding: 1em; margin: 1em;">
+<code>&lt;<u>html</u>&gt;</code> ... (&larr; XHTMLの規格で定義されている)
+<div style="border: 1px solid black; padding: 1em; margin: 1em;">
+<code>&lt;svg&gt;</code> ... (&larr; SVGの規格で定義されている)
+</div>
+</div>
+
+<h4>名前空間の例:</h4>
+<ul>
+<li> XHTMLのタグであることを表す … <code>http://www.w3.org/1999/xhtml</code>
+<li> SVGのタグであることを表す … <code>http://www.w3.org/2000/svg</code>
+<li> MathMLのタグであることを表す … <code>http://www.w3.org/1998/Math/MathML</code>
+<li> Dublin Coreのタグであることを表す … <code>http://purl.org/dc/elements/1.1/</code>
+<li> 書籍の例 … <code>urn:ISBN:0-395-36341-6</code>
+</ul>
+
+<h4>注意:</h4>
+<b>名前空間は URL のように見えるが URL ではない。</b>
+実際には名前空間はどのような文字列でもよく、
+ここでは全世界で一意であることを保証するために慣例としてURL 風の文字列を使っている。
+
+<ul>
+<li> <code>xmlns="…"</code> は、そのタグがどの名前空間に所属するかを示す。
+<li> <code>xmlns:<u>prefix</u>="…"</code> は、
+<code><u>prefix:</u></code>... で始まるタグがどの名前空間に所属するかを示す。
+<p>
+これは簡略表記であるとともに、属性の名前空間を指定するのに用いられる。
+</ul>
+
+<h4>例:</h4>
+<blockquote><pre>
+&lt;svg xmlns="http://www.w3.org/2000/svg"&gt;
+...
+&lt;/svg&gt;
+</pre></blockquote>
+は、以下の例と同じ:
+<blockquote><pre>
+&lt;foo:svg xmlns:foo="http://www.w3.org/2000/svg"&gt;
+...
+&lt;/foo:svg&gt;
+</pre></blockquote>
+
+
+<h2>基本的な図形</h2>
+
+<h3>矩形 (rect)</h3>
+<blockquote class=t><pre>
+&lt;rect x="<u>10</u>" y="<u>10</u>" width="<u>100</u>" height="<u>80</u>" fill="<u>none</u>" stroke="<u>black</u>" stroke-width="<u>2</u>" /&gt;
+&lt;rect x="<u>80</u>" y="<u>60</u>" width="<u>50</u>" height="<u>40</u>" fill="<u>yellow</u>" stroke="<u>blue</u>" stroke-width="<u>4</u>" /&gt;
+</pre></blockquote>
+
+<blockquote>
+  <svg xmlns="http://www.w3.org/2000/svg" 
+       xmlns:xlink="http://www.w3.org/1999/xlink"
+       version="1.1" width="300" height="110">
+    <rect x="10" y="10" width="100" height="80" fill="none" stroke="black" stroke-width="2" />
+    <rect x="80" y="60" width="50" height="40" fill="yellow" stroke="blue" stroke-width="4" />
+  </svg>
+</blockquote>
+
+<ul>
+<li> <code>x</code>, <code>y</code> に左上の座標を指定する。[必須]
+<li> <code>width</code>, <code>height</code> に幅と高さを指定する。[必須]
+<li> <code>fill</code> には塗る色を指定する。(塗らない場合は <code>none</code>)
+<li> <code>stroke</code> には線の色を指定する。(線がない場合は <code>none</code>)
+<li> <code>stroke-width</code> には線幅を指定する。
+<li> 書かれた順に描画される (つまり、先に描かれたものが奥になる)。
+</ul>
+
+<p>
+色の指定は HTML と同様に <code>black</code>、 <code>#ffddff</code> などとする。
+
+<h3>直線 (line)</h3>
+<blockquote class=t><pre>
+&lt;line x1="<u>10</u>" y1="<u>10</u>" x2="<u>100</u>" y2="<u>80</u>" stroke="<u>black</u>" stroke-width="<u>2</u>" /&gt;
+</pre></blockquote>
+
+<blockquote>
+  <svg xmlns="http://www.w3.org/2000/svg" 
+       xmlns:xlink="http://www.w3.org/1999/xlink"
+       version="1.1" width="300" height="100">
+    <line x1="10" y1="10" x2="100" y2="80" stroke="black" stroke-width="2" />
+  </svg>
+</blockquote>
+
+<ul>
+<li> <code>x1</code>, <code>y1</code> に始点の座標を指定する。[必須]
+<li> <code>x2</code>, <code>y2</code> に終点の座標を指定する。[必須]
+<li> <code>stroke</code>, <code>stroke-width</code> は同じ。
+</ul>
+
+<h3>多角形 (polygon)</h3>
+<blockquote class=t><pre>
+&lt;polygon points="<u>10,90 50,10 90,90</u>" fill="<u>green</u>" stroke="<u>black</u>" stroke-width="<u>2</u>" /&gt;
+</pre></blockquote>
+
+<blockquote>
+  <svg xmlns="http://www.w3.org/2000/svg" 
+       xmlns:xlink="http://www.w3.org/1999/xlink"
+       version="1.1" width="300" height="100">
+    <polygon points="10,90 50,10 90,90" fill="green" stroke="black" stroke-width="2" />
+  </svg>
+</blockquote>
+
+<ul>
+<li> <code>points</code> に点の座標列を指定する。[必須]
+<p> 座標列は、<code><u>x</u>, <u>y</u></code> の順に 2個ずつ区切って記述する。
+(区切りはカンマまたは空白のどちらでもよい)
+<li> <code>fill</code>, <code>stroke</code>, <code>stroke-width</code> は同じ。
+</ul>
+
+<h3>円と楕円 (circle, ellipse)</h3>
+
+<blockquote class=t><pre>
+&lt;circle cx="<u>50</u>" cy="<u>50</u>" r="<u>40</u>" fill="<u>none</u>" stroke="<u>black</u>" stroke-width="<u>2</u>" /&gt;
+&lt;ellipse cx="<u>200</u>" cy="<u>50</u>" rx="<u>80</u>" ry="<u>40</u>" fill="<u>red</u>" stroke="<u>black</u>" stroke-width="<u>2</u>" /&gt;
+</pre></blockquote>
+
+<blockquote>
+  <svg xmlns="http://www.w3.org/2000/svg" 
+       xmlns:xlink="http://www.w3.org/1999/xlink"
+       version="1.1" width="400" height="100">
+    <circle cx="50" cy="50" r="40" fill="none" stroke="black" stroke-width="2" />
+    <ellipse cx="200" cy="50" rx="80" ry="40" fill="red" stroke="black" stroke-width="2" />
+  </svg>
+</blockquote>
+
+<ul>
+<li> <code>cx</code>, <code>cy</code> に中心の座標を指定する。[必須]
+<li> <code>r</code> (円の場合) または <code>rx</code>, <code>ry</code> (楕円の場合) に半径を指定する。[必須]
+<li> <code>fill</code>, <code>stroke</code>, <code>stroke-width</code> は同じ。
+</ul>
+
+<h2>文字の描画</h2>
+
+<blockquote class=t><pre>
+&lt;rect x="10" y="10" width="200" height="80" fill="none" stroke="black" /&gt;
+&lt;text x="<u>10</u>" y="<u>40</u>" text-anchor="<u>start</u>"&gt;<u>左寄せ</u>&lt;/text&gt;
+&lt;text x="<u>110</u>" y="<u>60</u>" fill="<u>red</u>" text-anchor="<u>middle</u>"&gt;<u>中央寄せ</u>&lt;/text&gt;
+&lt;text x="<u>210</u>" y="<u>80</u>" fill="<u>white</u>" stroke="<u>black</u>" text-anchor="<u>end</u>"&gt;<u>右寄せ</u>&lt;/text&gt;
+</pre></blockquote>
+
+<blockquote>
+  <svg xmlns="http://www.w3.org/2000/svg" 
+       xmlns:xlink="http://www.w3.org/1999/xlink"
+       version="1.1" width="300" height="100">
+    <rect x="10" y="10" width="200" height="80" fill="none" stroke="black" />
+    <text x="10" y="40" text-anchor="start">左寄せ</text>
+    <text x="110" y="60" fill="red" text-anchor="middle">中央寄せ</text>
+    <text x="210" y="80" fill="white" stroke="black" text-anchor="end">右寄せ</text>
+  </svg>
+</blockquote>
+
+<ul>
+<li> <code>x</code>, <code>y</code> に起点の座標を指定する。[必須]
+<li> <code>text-anchor</code> に起点の方法を指定する。
+  (<code>start</code>, <code>middle</code>, <code>end</code> のいずれか)
+  <p> <b><code>left</code>, <code>center</code>, <code>right</code> ではない。</b>
+<li> 文字列を <code>&lt;text&gt;</code> 〜 <code>&lt;/text&gt;</code> で囲む。
+<li> 文字の色は <code>fill</code> で指定する。
+<li> <code>stroke</code> 属性を指定すると、アウトラインが描画される。
+</ul>
+
+<p>
+<strong>注意:</strong> HTMLと違い、複数行にわたる文字は一度に書けない。
+
+<h2>CSSとの組み合わせ</h2>
+<p>
+どの要素 (おもに <code>&lt;text&gt;</code>) も、
+<code>style="<u>...</u>"</code> で CSS 属性をつけることができる。
+
+<blockquote class=t><pre>
+&lt;text x="0" y="40" style="<u>font-style: italic;</u>"&gt;斜体&lt;/text&gt;
+&lt;text x="100" y="80" style="<u>font-size: 200%;</u>"&gt;大きな文字&lt;/text&gt;
+</pre></blockquote>
+
+<blockquote>
+  <svg xmlns="http://www.w3.org/2000/svg" 
+       xmlns:xlink="http://www.w3.org/1999/xlink"
+       version="1.1" width="300" height="100">
+    <text x="0" y="40" style="font-style: italic;">斜体</text>
+    <text x="100" y="80" style="font-size: 200%;">大きな文字</text>
+  </svg>
+</blockquote>
+
+<h2>グループ化</h2>
+<p>
+<code>&lt;g&gt;</code> 〜 <code>&lt;/g&gt;</code> で囲んだ部分は、
+同じ属性値が適用される。
+
+<blockquote class=t><pre>
+&lt;g <u>fill="none" stroke="blue" stroke-width="1"</u>&gt;
+  &lt;rect x="10" y="10" width="50" height="30" /&gt;
+  &lt;line x1="35" y1="25" x2="100" y2="50" /&gt;
+  &lt;circle cx="100" cy="50" r="30" /&gt;
+&lt;/g&gt;
+</pre></blockquote>
+
+<blockquote>
+  <svg xmlns="http://www.w3.org/2000/svg" 
+       xmlns:xlink="http://www.w3.org/1999/xlink"
+       version="1.1" width="200" height="100">
+    <g fill="none" stroke="blue" stroke-width="1">
+      <rect x="10" y="10" width="50" height="30" />
+      <line x1="35" y1="25" x2="100" y2="50" />
+      <circle cx="100" cy="50" r="30" />
+    </g>
+  </svg>
+</blockquote>
+
+<h2>拡大縮小・移動・回転</h2>
+<p>
+要素に
+<code>transform="<u>...</u>"</code> 属性をつけると、 
+その図形を変形させることができる。
+(グループ化した図形に対しても有効。)
+
+<blockquote class=t><pre>
+&lt;g fill="none" stroke="black" stroke-width="2" transform="<u>translate(100,50)</u>"&gt;
+  &lt;circle cx="0" cy="0" r="40"/&gt;
+  &lt;rect x="50" y="-50" width="80" height="40" transform="<u>rotate(30)</u>" /&gt;
+&lt;/g&gt;
+&lt;text x="0" y="20" transform="<u>scale(4,2)</u>"&gt;HELLO&lt;/text&gt;
+</pre></blockquote>
+
+<blockquote>
+  <svg xmlns="http://www.w3.org/2000/svg" 
+       xmlns:xlink="http://www.w3.org/1999/xlink"
+       version="1.1" width="300" height="100">
+    <g fill="none" stroke="black" stroke-width="2" transform="translate(100,50)">
+      <circle cx="0" cy="0" r="40"/>
+      <rect x="50" y="-50" width="80" height="40" transform="rotate(30)" />
+    </g>
+    <text x="0" y="20" transform="scale(4,2)">HELLO</text>
+  </svg>
+</blockquote>
+
+<ul>
+<li> <code>translate(<u>x</u>, <u>y</u>)</code> で起点を移動する。
+<li> <code>rotate(<u>a</u>)</code> で指定した角度だけ<u>時計回りに</u>回転する。
+<li> <code>scale(<u>x</u>, <u>y</u>)</code> で拡大・縮小率を変更する。
+</ul>
+
+<p>
+ひとつの <code>transform</code> 属性の中に
+複数の指定を空白で区切って入れることも可能。
+
+<h2>再利用</h2>
+<p>
+すべての要素には <code>id="..."</code> 属性をつけておき、何度でも再利用できる。
+<p>
+一度定義した図形を利用するには <code>&lt;use /&gt;</code> タグを使う。
+
+<blockquote><pre>
+&lt;polygon id="<u>star</u>" points="25,90 90,40 10,40 75,90 50,10" 
+         fill="none" stroke="black" stroke-width="3" /&gt;
+&lt;use xlink:href="<u>#star</u>" transform="translate(150,10)" /&gt;
+&lt;use xlink:href="<u>#star</u>" transform="translate(150,0) rotate(45) " /&gt;
+</pre></blockquote>
+
+<blockquote>
+  <svg xmlns="http://www.w3.org/2000/svg" 
+       xmlns:xlink="http://www.w3.org/1999/xlink"
+       version="1.1" width="300" height="120">
+    <polygon id="star" points="25,90 90,40 10,40 75,90 50,10" 
+             fill="none" stroke="black" stroke-width="3" />
+    <use xlink:href="#star" transform="translate(150,10)" />
+    <use xlink:href="#star" transform="translate(150,0) rotate(45) " />
+  </svg>
+</blockquote>
+
+<ul>
+<li> 再利用したい要素に <code>id="<u>名前</u>"</code> 属性をつける。
+(<code>&lt;g&gt;</code> 〜 <code>&lt;/g&gt;</code> でグループ化した要素も可) 
+<li> 再利用したい場所で <code>&lt;use xlink:href="#<u>名前</u>" /&gt;</code> を書く。
+<p>
+このとき、属性 <code>xlink</code> の名前空間を指定しておく必要がある。
+</ul>
+
+<h3>矢印を描く</h3>
+<p>
+さらに応用として、<code>&lt;marker&gt;</code> タグがある。
+これは線の終端で利用する図形を定義する。
+
+<blockquote class=t><pre>
+&lt;marker id="<u>arrow</u>" viewBox="<u>-5 -5 10 10</u>"&gt;
+  <u>&lt;polygon points="-5,-5 5,0 -5,5" fill="black" stroke="none" /&gt;</u>
+&lt;/marker&gt;
+&lt;line x1="10" y1="20" x2="100" y2="20" 
+      stroke="black" stroke-width="4" marker-end="<u>url(#arrow)</u>" /&gt;
+</pre></blockquote>
+
+<blockquote>
+  <svg xmlns="http://www.w3.org/2000/svg" 
+       xmlns:xlink="http://www.w3.org/1999/xlink"
+       version="1.1" width="200" height="40">
+    <marker id="arrow" viewBox="-5 -5 10 10">
+      <polygon points="-5,-5 5,0 -5,5" fill="black" stroke="none" />
+    </marker>
+    <line x1="10" y1="20" x2="100" y2="20" 
+	  stroke="black" stroke-width="4" marker-end="url(#arrow)" />
+  </svg>
+</blockquote>
+
+<ul>
+<li> 終端で利用したい図形をあらかじめ
+<code>&lt;marker id="<u>名前</u>"&gt;</code> 〜 <code>&lt;/marker&gt;</code>
+で定義しておく。
+<li> このとき、図形の範囲を 
+<code>viewbox="<u>x</u> <u>y</u> <u>width</u> <u>height</u>"</code> 属性で指定する。[必須]
+<p>
+<strong>注意:</strong>
+図形は (0, 0) を中心とするように描くこと。
+<li> 利用する直線で 
+<code>marker-start="url(#<u>名前</u>)"</code> あるいは 
+<code>marker-end="url(#<u>名前</u>)"</code> を指定する。
+<p>
+<strong>注意:</strong>
+ここでは <code>url(...)</code> が必要。
+</ul>
+
+<h2>画像の挿入</h2>
+<blockquote class=t><pre>
+&lt;image x="0" y="0" width="320" height="220" xlink:href="image.jpg" /&gt;
+&lt;text x="160" y="200" text-anchor="middle" fill="white"
+      style="font-weight: bold; font-size: 24px;"&gt;
+  United States Capitol Dome
+&lt;/text&gt;
+</pre></blockquote>
+
+<blockquote>
+  <svg xmlns="http://www.w3.org/2000/svg" 
+       xmlns:xlink="http://www.w3.org/1999/xlink"
+       version="1.1" width="320" height="220">
+    <image x="0" y="0" width="320" height="220" xlink:href="image.jpg" />
+    <text x="160" y="200" text-anchor="middle" fill="white"
+	  style="font-weight: bold; font-size: 24px;">
+      United States Capitol Dome
+    </text>
+  </svg>
+</blockquote>
+
+<ul>
+<li> <code>x</code>, <code>y</code> に左上の座標を指定する。[必須]
+<li> <code>width</code>, <code>height</code> に幅と高さを指定する。[必須]
+<li> <code>xlink:href</u> に画像の URL を指定する。[必須]
+</ul>
+
+
+<h2>SVGを作成するツール</h2>
+<p>
+手で全部入力するのが面倒くさいときは、
+ツールで作成して貼りつければよい。
+
+<h3>アプリケーション</h3>
+<ul>
+<li> メモ帳
+<li> <a href="http://www.libreoffice.org">LibreOffice</a>
+<li> <a href="http://www.inkscape.org/">InkScape</a>
+</ul>
+
+<h3>オンライン</h3>
+<ul>
+<li> <a href="http://svg-edit.googlecode.com/svn/branches/stable/editor/svg-editor.html">SVG-Edit</a> (もっとも単純なSVGを生成する)
+<p> ダウンロード版: 
+<a href="http://svg-edit.googlecode.com/svn/branches/2.7/build/svg-edit-2.7.zip">svg-edit-2.7.zip</a>
+<li> <a href="http://www.draw.io/">draw.io</a>
+</ul>
+
+<h2>参考資料</h2>
+<ul>
+<li> <a href="https://developer.mozilla.org/en-US/docs/Web/SVG">SVG</a> (Mozilla)
+<li> <a href="http://www.atmarkit.co.jp/ait/articles/1206/01/news143.html">10分でわかるSVG</a> (atkarmkit)
+</ul>
+
+<hr>
+<address>Yusuke Shinyama</address>

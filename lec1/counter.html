@@ -1,0 +1,166 @@
+<!DOCTYPE html><!-- -*- javascript -*- -->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<style><!--
+.digit { font-family: Courier New, Courier, monospace; font-weight: 900; font-size: 38px; }
+--></style>
+<script type="text/javascript">
+//<![CDATA[
+function log(x)
+{
+  if (typeof(window.console) !== 'undefined') {
+    window.console.log(x);
+  }
+}
+
+function Counter(parent, decimal, base, ndigits, dwidth, dheight)
+{
+  var cols = document.createElement("div");
+  cols.style.position = "absolute";
+  cols.style.width = (dwidth*ndigits)+"px";
+  cols.style.height = dheight+"px";
+  cols.style.overflow = "hidden";
+  function mkelem(x) {
+    var e = document.createElement("div");
+    e.className = "digit";
+    e.style.position = "absolute";
+    e.style.top = 0;
+    e.style.left = x+"px";
+    e.style.width = dwidth+"px";
+    e.style.height = dheight+"px";
+    cols.appendChild(e);
+    return e;
+  }
+
+  this.base = base;
+  this.decimal = decimal;
+  this.digits0 = new Array();
+  this.digits1 = new Array();
+  for (var i = 0; i < ndigits; i++) {
+    var x = (ndigits-1-i)*dwidth;
+    this.digits0.push(mkelem(x));
+    this.digits1.push(mkelem(x));
+  }
+  this.active = true;
+  this.focused = true;
+  parent.appendChild(cols);
+}
+
+Counter.prototype.setDigit = function (i, v)
+{
+  var v0 = Math.floor(v);
+  var d0 = this.digits0[i];
+  var d1 = this.digits1[i];
+  var h0 = d0.getBoundingClientRect().height;
+  var dy = Math.floor(h0*(v0-v));
+  d0.innerHTML = v0 % this.base;
+  d0.style.top = (dy)+"px";
+  d1.innerHTML = (v0+1) % this.base;
+  d1.style.top = (dy+h0)+"px";
+}
+
+Counter.prototype.setValue = function (v)
+{
+  if (this.decimal) {
+    this.decimal.innerHTML = Math.floor(v+0.1);
+  }
+  for (var i = 0; i < this.digits0.length; i++) {
+    var vb = Math.floor(v/this.base);
+    var vd = v-vb*this.base;
+    this.setDigit(i, vd);
+    if (Math.floor(vd) == this.base-1) {
+      v = vb+(v-Math.floor(v));
+    } else {
+      v = vb;
+    }
+  }
+}
+
+Counter.prototype.start = function (fps, dps)
+{
+  var counter = this;
+  counter.current = 0;
+  counter.setValue(0);
+  function idle() {
+    if (counter.active && counter.focused) {
+      counter.current += 1;
+      counter.setValue(counter.current*dps / fps);
+    }
+  }
+  function focus(e) { counter.focused = true; }
+  function blur(e) { counter.focused = false; }
+  window.addEventListener("focus", focus);
+  window.addEventListener("blur", blur);
+  counter.interval = window.setInterval(idle, 1000/fps);
+}
+
+Counter.prototype.stop = function ()
+{
+  if (this.interval) {
+    window.clearInterval(this.interval);
+    this.interval = null;
+  }
+}
+
+var counter = null;
+function changeSel() {
+  var div = document.getElementById("divCounter");
+  var dec = document.getElementById("divDecimal");
+  var sel = document.getElementById("selBase");
+  var v = sel.value;
+  while (div.hasChildNodes()) {
+    div.removeChild(div.firstChild);
+  }
+  if (counter) {
+    counter.stop();
+    counter = null;
+  }
+  switch (v) {
+  case "Base 10":
+    counter = new Counter(div, dec, 10, 8, 20, 40);
+    counter.start(15, 1);
+    break;
+  case "Base 8":
+    counter = new Counter(div, dec, 8, 8, 20, 40);
+    counter.start(15, 1);
+    break;
+  case "Base 2":
+    counter = new Counter(div, dec, 2, 8, 20, 40);
+    counter.start(15, 0.5);
+    break;
+  }
+}
+
+function changeRun() {
+  var check = document.getElementById("checkRun");
+  if (counter) {
+    counter.active = check.checked;
+  }
+}
+
+function changeVis() {
+  var check = document.getElementById("checkVis");
+  var dec = document.getElementById("divDecimal");
+  dec.hidden = !check.checked;
+}
+//]]>
+</script>
+<body onload="changeSel(); changeVis(); changeRun();" >
+  <div>
+  <select id="selBase" onchange="changeSel(); changeRun();">
+  <option>Select</option>
+  <option>Base 10</option>
+  <option>Base 8</option>
+  <option>Base 2</option>
+  </select> &nbsp;
+  <label><input id="checkRun" type=checkbox onchange="changeRun();"> Running</label>
+  <label><input id="checkVis" type=checkbox onchange="changeVis();"> Show decimal</label>
+  </div>
+  <div style="position:relative; margin:1em;">
+  <div id="divCounter" style="position:absolute; left:0px; top:0px;"></div>
+  <div id="divDecimal" style="position:absolute; left:0px; top:50px;"></div>
+  </div>
+</body>
+</html>
