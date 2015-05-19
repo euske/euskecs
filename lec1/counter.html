@@ -55,9 +55,9 @@ Counter.prototype.setDigit = function (i, v)
   var d1 = this.digits1[i];
   var h0 = d0.getBoundingClientRect().height;
   var dy = Math.floor(h0*(v0-v));
-  d0.innerHTML = v0 % this.base;
+  d0.innerHTML = (v0 % this.base).toString(this.base);
   d0.style.top = (dy)+"px";
-  d1.innerHTML = (v0+1) % this.base;
+  d1.innerHTML = ((v0+1) % this.base).toString(this.base);
   d1.style.top = (dy+h0)+"px";
 }
 
@@ -118,6 +118,10 @@ function changeSel() {
     counter = null;
   }
   switch (v) {
+  case "Base 16":
+    counter = new Counter(div, dec, 16, 8, 20, 40);
+    counter.start(15, 2);
+    break;
   case "Base 10":
     counter = new Counter(div, dec, 10, 8, 20, 40);
     counter.start(15, 1);
@@ -154,6 +158,7 @@ function changeVis() {
   <option>Base 10</option>
   <option>Base 8</option>
   <option>Base 2</option>
+  <option>Base 16</option>
   </select> &nbsp;
   <label><input id="checkRun" type=checkbox onchange="changeRun();"> Running</label>
   <label><input id="checkVis" type=checkbox onchange="changeVis();"> Show decimal</label>
