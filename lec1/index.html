@@ -8,6 +8,7 @@ table { border-collapse: collapse; }
 td { padding: 0.2em; }
 .td1 { padding: 1em; text-align: center; }
 .module { border: 1pt solid; padding: 0.5em; text-align: center; }
+.figure { margin: 0.5em; padding: 0.5em; border: 1px solid gray; }
 --></style>
 </head>
 <body>
@@ -130,6 +131,13 @@ td { padding: 0.2em; }
       <line x1="265" y1="80" x2="265" y2="50" />
       <line x1="375" y1="80" x2="375" y2="50" />
       <line x1="10" y1="80" x2="420" y2="80" />
+
+      <line x1="50" y1="85" x2="50" y2="50" />
+      <line x1="160" y1="85" x2="160" y2="50" />
+      <line x1="270" y1="85" x2="270" y2="50" />
+      <line x1="380" y1="85" x2="380" y2="50" />
+      <line x1="10" y1="85" x2="420" y2="85" />
+
       <line x1="55" y1="90" x2="55" y2="50" />
       <line x1="165" y1="90" x2="165" y2="50" />
       <line x1="275" y1="90" x2="275" y2="50" />
@@ -303,7 +311,7 @@ td { padding: 0.2em; }
 <h4>例</h4>
 <p>
 これは何をする回路か?
-<div class=figure>
+<div class=figure style="position: relative;">
   <svg xmlns="http://www.w3.org/2000/svg" 
        xmlns:xlink="http://www.w3.org/1999/xlink"
        version="1.1" width="400" height="220">
@@ -343,7 +351,24 @@ td { padding: 0.2em; }
       <path d="M29,96 a4,4 0 0,1 0,8" fill="white" />
       <path d="M49,96 a4,4 0 0,1 0,8" fill="white" />
     </g>
+    <text x="10" y="20">A</text>
+    <text x="10" y="90">B</text>
+    <text x="320" y="50">Y</text>
+    <text x="320" y="170">X</text>
   </svg>
+
+<table border style="position: absolute; top:10px; left:400px;">
+<tr><th>A</th><th>B</th><th></th><th>X</th><th>Y</th></tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td></td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+</tr>
+<tr><td>&nbsp;</td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;</td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;</td><td></td><td></td><td></td><td></td></tr>
+</table>
 </div>
 
 <h3>プログラム</h3>
