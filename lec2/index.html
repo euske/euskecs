@@ -241,6 +241,7 @@ Hello!
 
 
 <h3>プログラムを0と1であらわす</h3>
+<h4>32ビット用プログラム</h4>
 <blockquote style="font-size:80%; background:#eeeeee;"><pre>
   00401066: 57                 push        edi
   00401067: 33 FF              xor         edi,edi
@@ -252,6 +253,21 @@ Hello!
   00401075: 8B 0C 2E           mov         ecx,dword ptr [esi+ebp]
   ...
 </pre></blockquote>
+
+<h4>64ビット用プログラム</h4>
+<blockquote style="font-size:80%; background:#eeeeee;"><pre>
+  0000000140001164: E8 B7 03 00 00     	  call        0000000140001520
+  0000000140001169: 85 C0              	  test        eax,eax
+  000000014000116B: 74 0F              	  je          000000014000117C
+  000000014000116D: 45 33 C0           	  xor         r8d,r8d
+  0000000140001170: 41 8D 50 02        	  lea         edx,[r8+2]
+  0000000140001174: 33 C9              	  xor         ecx,ecx
+  0000000140001176: FF 15 04 1F 00 00  	  call        qword ptr [40003080h]
+  000000014000117C: 48 8B 0D 25 0F 00 00  mov         rcx,qword ptr [400020A8h]
+  0000000140001183: 48 8B 05 A6 1E 00 00  mov         rax,qword ptr [40003030h]
+  ...
+</pre></blockquote>
+ 
 
 <h3>データ形式</h3>
 <p>
