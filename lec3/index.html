@@ -1,0 +1,478 @@
+﻿<!DOCTYPE HTML>
+<html lang="ja">
+<head>
+<title>コンピュータ・ネットワーク</title>
+<style><!--
+body { line-height: 1.5; }
+table { border-collapse: collapse; }
+td { padding: 0.5em; text-align: center; }
+p { margin: 0; }
+.figure { margin: 0.5em; padding: 0.5em; border: 1px solid gray; }
+--></style>
+</head>
+<body>
+<h1>コンピュータ・ネットワーク</h1>
+
+<h2>コンピュータ・ネットワークの用途と種類</h2>
+
+<h3>なにを送るのか?</h3>
+<ul>
+<li> 個人用
+<ul>
+  <li> 通信: 電子メール、LINE
+  <li> 調べもの: ウェブ
+  <li> エンターテインメント: YouTube, Hulu, オンラインゲーム
+</ul>
+<li> 業務用
+<ul>
+  <li> 商品の発注・見積り … EDI (Electronic Data Interchange)
+  <li> 金融情報 (払い込み・引き落し) … 全銀BSC手順、SWIFT, VISANet
+  <li> その他、各業務の情報
+  <ul>
+    <li> 物流管理 (鉄道、飛行機、郵便物、座席予約)
+    <li> 事業所間の情報共有 (コンビニ、レストラン、クリーニング、etc.)
+    <li> 顧客情報、医療情報
+  </ul>
+</ul>
+</ul>
+
+<h3>どうやって送るのか?</h3>
+<p>
+究極的にはふたつの方式しかない。
+
+<h4>A. 回線交換</h4>
+
+<ul>
+<li> 公衆回線 (電話)
+ <ul>
+  <li> 長所: 安価で信頼性がある。
+  <li> 短所: 遅い、使えないときがある。
+ </ul>
+<li> 専用線
+ <ul>
+  <li> 緊急用回線、衛星回線など。
+  <li> 長所: ふつうの回線が使えないときも使える。
+  <li> 短所: 非常に高価。
+ </ul>
+</ul>
+
+<h4>B. パケット通信</h4>
+
+<ul>
+<li> インターネット
+ <ul>
+  <li> 長所: 非常に安価かつ広範囲。
+  <li> 短所: 盗聴される、信頼性なし。
+  <li> 範囲による分類:
+    <ul>
+      <li> LAN (Local Area Network) … 局所ネットワーク、ひとつの場所・組織のみ。
+      <li> WAN (Wide Area Network) … 広域ネットワーク、自治体から全世界まで。
+    </ul>
+ </ul>
+</ul>
+
+
+<h2>ネットワークの「階層」</h2>
+<p>
+ネットワークは構築するのが大変だ。(道路と同じ)
+<ul>
+<li> いろいろな端末・機器を変えたい。 =  送信機・受信機 (クライアント/端末) の自由
+<li> いろいろな用途に使いたい。 = 伝えたい「内容」 (アプリケーション) の自由
+<li> いろいろな伝送経路を使いたい。 = 伝送媒体 (メディア、“土管”) の自由
+</ul>
+
+<p>
+テレビと比較すると、インターネットでは上の要素はどれも可変である。
+唯一の規格はパケット送受信の方式 (プロトコル) だけ。
+
+<p>
+電気を使わなくてもかまわない:
+<a href="http://www.blug.linux.no/rfc1149/">http://www.blug.linux.no/rfc1149/</a>
+
+<h2>ネットワークにおける課題</h2>
+<ul>
+<li> どうやって伝えたい情報を 0/1 の列にするか (プログラマの問題)。
+<li> どうやってパケットを相手に送るか。
+<li> どうやって回線をみんなで公平に使うか。(混雑に対応・不正な利用を防ぐ)
+<li> どうやって通信の秘密を守るか。
+</ul>
+
+<h2>基本的な概念</h2>
+
+<h3>アドレス</h3>
+<p>
+ある場所を表す名前。
+<u>物理的な場所とは何の関係もない。</u>
+<ul>
+<li> IPアドレス … インターネット上の各PCが勝手に名乗っている。
+</ul>
+
+<h3>パケット通信の2つの使い方</h3>
+<ul>
+<li> データグラム (datagram) 送信
+<li> 仮想回線 (virtual circuit) の構築
+</ul>
+
+<h3>「サービス」という考え方</h3>
+<ul>
+<li> クライアント・サーバ … 「サービス」と「客」が存在する。
+<ul>
+ <li> サーバ (マシン) … つねに電源が入っている。
+ <li> クライアント (マシン) … 勝手なときに来店。
+</ul>
+<li> ピア・ツー・ピア (P2P) … 対等な関係。
+</ul>
+
+
+<h2>Ethernet (データリンク層)</h2>
+<p>
+「IEEE802.なんとか」と呼ばれる規格。(教科書 P.103参照)
+<p>
+LAN におけるデータリンクでもっともよく使われる。
+ブロードキャストが基本。(「バス」に似ている)
+<p>
+MACアドレスで各機器を識別する。
+<p>
+無線LANもEthernetの一種。
+(電波だから当然ブロードキャストされる)
+
+<h2>IP層 (ネットワーク層)</h2>
+<P>
+データ (0/1) が2点間で信頼できる方法で送れるようになったら、
+次はそれを使って離れた地点にパケットを送る。
+
+<p>
+ひとつのパケットの大きさには制限がある。なぜなら…
+<ul>
+ <li> パケットが大きいと、メモリをたくさん使う。
+ <li> パケットが大きいと、回線を占有してしまう。
+</ul>
+
+<h3>ヘッダ (Header)</h3>
+<p>
+各パケットにはデータ以外の情報がついている。
+とくに、送り元の IPアドレスと宛先の IPアドレスがついている。
+<h4>IPアドレス (IP address)</h4>
+<p>
+全世界で32ビット。大幅に不足している。
+<ul>
+<li> <code>127.0.0.1</code>
+<li> <code>58.158.55.222</code>
+<li> <code>255.255.255.255</code>
+<li> <code>343.45.687.90</code>
+</ul>
+
+<h3>ルーティング (Routing)</h3>
+<p>
+IPパケットは、複数台のコンピュータを経由して転送される。
+このようなIPパケットを転送するコンピュータを「ルータ (router)」とよぶ。
+<p>
+ルータは受けとったパケットをいったんメモリに保管し、
+適切な送り先に向けて送信する。
+<ul>
+<li> 家庭用のルータ (1つの回線からくるパケットを複数台のPCに転送する)
+<li> 業務用ルータ (複数の回線とつなぐ、ISPなどで使われる)<br>
+たとえば Cisco の
+<a href="http://www.cisco.com/c/en/us/products/routers/carrier-routing-system/index.html">CRS</a>
+など。(1Tbps〜900Tbps)
+</ul>
+
+<p>
+プログラムから見ると、インターネットの世界はこうなっている。
+<a href="http://personalpages.manchester.ac.uk/staff/m.dodge/cybergeography/atlas/topology.html">Atlas of Cyberspaces</a>
+<ul>
+<li> インターネットの全体像はわからない。
+<li> ケーブルの容量・速度もわからない。
+</ul>
+
+<h2>プライベート IPアドレス</h2>
+<p>
+繰り返し:
+インターネットを使う<u>すべての</u>機器には
+IPアドレスが必要である。→ アドレスが足りない。
+
+<p>
+以下のアドレスは組織内で勝手に使うことができるという
+決まりになっている。
+<ul>
+<li> 10.0.0.0/8
+<li> 172.16.0.0/12
+<li> 192.168.0.0/16
+<li> ...
+</ul>
+
+<p>
+プライベートIPアドレス ←→ グローバルIPアドレス
+
+<h2>NAT (Network Address Translation)</h2>
+<p>
+プライベートネットワークとインターネットを
+接続するための仕組み。
+<p>
+どのプライベートIPアドレスが
+どのグローバルIPアドレスとTCPで通信しているかを
+覚えておき、IPパケットを書き換える。
+
+
+<h2>ファイヤーウォール</h2>
+<p>
+害のありそうなパケットを通さない (フィルタ)。
+<p>
+通常は外→内をフィルタするが、
+内→外をフィルタしていることもある。
+<p>
+プロキシサーバを介して通信をおこなう。
+
+<h3>家庭用ルータ</h3>
+<ul>
+<li> モデム機能 (データリンク層)
+<li> 無線アクセスポイント
+<li> NAT機能つきルータ
+<li> DNSサーバ
+<li> DHCPサーバ
+<li> ファイヤーウォール
+</ul>
+
+
+<h2>いろいろなプロトコル</h2>
+<h3>HTTP (Hyper Text Transfer Protocol)</h3>
+<p>
+<ol>
+<li> クライアント (ブラウザ) がコンテンツを要求する。
+<li> サーバがコンテンツを提供する。
+</ol>
+<p>
+たとえばFirefoxで
+<center>
+<code>http://<span class=bgy>www.example.com</span>:<span class=bgr>80</span><span class=bgg>/news/2015/</span></code> 
+</center>
+というURL を開くと、
+TCPポート <span class=bgr>80</span>番に対して接続がおこなわれ、
+以下のようなリクエスト文字列が送信される:
+<blockquote><pre>
+GET <span class=bgg>/news/2015/</span> HTTP/1.1
+Host: <span class=bgy>www.example.com</span>
+User-Agent: Mozilla/5.0 (Windows NT 6.1; rv:35.0) Gecko/20100101 Firefox/35.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+<em>(空行)</em>
+</pre></blockquote>
+<p>
+これに対してサーバは以下のようなレスポンス文字列を返す:
+<blockquote><pre>
+HTTP/1.1 200 OK
+Connection: close
+Date: Fri, 20 Feb 2015 08:27:28 GMT
+Content-Type: text/html
+Content-Length: 9022
+<em>(空行)</em>
+&lt;html&gt;
+...
+</pre></blockquote>
+
+<h3>SMTP (Simple Mail Transfer Protocol)</h3>
+<p>
+電子メール送信用のプロトコル。
+<a href="https://tools.ietf.org/html/rfc821">RFC 821</a>で
+定義されている。
+<ol>
+<li> クライアント (メーラ) がメッセージを送る。
+<li> サーバがメッセージを受けつける。
+</ol>
+
+<p>
+たとえば、<code class=bgy>yusuke@example.com</code> から
+<code class=bgg>nta20150220@gmail.com</code> という
+メールアドレスにメールを送るとする。
+Gmail のメールサーバのTCPポート 25番に対して接続がおこなわれ、
+以下のような文字列が送信される:
+<blockquote><pre>
+HELO www.example.com
+MAIL FROM:&lt;<span class=bgy>yusuke@example.com</span>&gt;
+RCPT TO:&lt;<span class=bgg>nta20150220@gmail.com</span>>&gt;
+DATA
+<em>(...メッセージ本体...)</em>
+.
+</pre></blockquote>
+
+<h2>セキュリティとは何か?</h2>
+<ul>
+<li> 機密性 (Secrecy)
+<li> 完全性 (Integrity)
+<li> 可用性 (Availability)
+</ul>
+<p>
+「金庫の設計図があっても、金庫の鍵がなければ開かない」 (Bruce Schneier)
+
+<h3>コンピュータセキュリティの価値</h3>
+<p>
+<a href="http://krebsonsecurity.com/2012/10/the-scrap-value-of-a-hacked-pc-revisited/">ハックされたPCの価値</a>。
+<ul>
+<li> ウェブサーバを動かす: 違法サイトの構築。
+<li> スパムロボットを動かす: 違法広告は金になる。
+<li> パスワードを盗む: 複数のサイトのパスワードを集めて売る。
+<li> 金融情報を盗む: 証券情報、クレジットカード情報などを売る。
+<li> さらし者にする: Twitter, Google+, Facebook アカウントを乗っとる。
+<li> ライセンスキーを盗む: 高額なソフトウェアのライセンスキーを盗んで売る。
+<li> 脅迫に使う。Ransomware。
+<li> 他の遠隔攻撃の踏み台にする。
+<li> ビットコインの計算に使う。
+</ul>
+
+<p>
+<a href="http://krebsonsecurity.com/2013/06/the-value-of-a-hacked-email-account/">ハックされたアカウントの価値</a>。
+<ul>
+<li> スパムあるいは詐欺に使う。
+<li> 「いいね!」を売る。
+<li> パスワードを盗む。
+</ul>
+
+
+<h2>ネットワークのセキュリティ</h2>
+<p>
+TCP/IPによる通信では、たしかにデータは信頼性ある方法で
+送受信できるが、通信そのものが安全 (secure) かはわからない。
+
+<ul>
+<li> 盗聴 (eavesdropping)
+<li> なりすまし (spoofing)
+<ul>
+<li> ルータの乗っ取り
+<li> DNS偽装
+</ul>
+</ul>
+
+<p>
+これを防ぐため、
+現在では TCP/IP のアプリケーション層に
+SSL/TLS というもうひとつの層を使っている。
+<p>
+HTTPS は SSL層を使った HTTP である。
+<ul>
+<li> 暗号化
+<li> 認証
+</ul>
+
+<h3>暗号 (Cryptography) とは何か?</h3>
+<ul>
+<li> 平文 (plaintext) ←[暗号]→ 暗号文 (ciphertext)
+<li> 「対称暗号」…鍵が必要。
+<li> シーザー暗号
+<li> <a href="https://en.wikipedia.org/wiki/The_Gold-Bug">黄金虫の暗号</a>
+<li> One-time Pad
+<ul>
+  <li> 非効率
+  <li> 乱数を作るのは大変
+</ul>
+<li> 鍵が長い == 安全
+</ul>
+
+<h3>暗号化</h3>
+<ul>
+<li> さまざまな「暗号化アルゴリズム」がある。
+RC4, DES, 3DES, AES128, AES256, Blowfish, Chacha20, ...
+<li> 鍵が必要。AES128の場合: 128ビット (16バイト)、データも 128ビット固定。
+<li> <a href="https://bobnalice.wordpress.com/2009/01/28/friends-don%E2%80%99t-let-friends-use-ecb-mode-encryption/">CBC/EBC の違い</a>
+</ul>
+
+<h2>公開鍵暗号 (非対称暗号)</h2>
+
+<h3>暗号における大きな問題</h3>
+<p>
+暗号を使うためには、まず鍵を相手に知らせる必要がある。
+(鍵配送)
+<p>
+盗聴されているかもしれない状況で、
+どうやって鍵を安全に相手に知らせるのか?
+
+<ul>
+<li> 対称暗号…送り側と受け側で同じ鍵を使う。
+<li> 非対称暗号…送り側と受け側で別々の鍵を使う。
+</ul>
+
+<h2>電子署名 (Digital Signature)</h2>
+<p>
+一方向ハッシュ関数 + 公開鍵暗号
+<ul>
+<li> ある情報を秘密鍵で署名 (sign) する: {X, E(H(X))}
+<li> その情報が正しいことを公開鍵で検証 (verify) する: {X, D(S)}
+</ul>
+<ul>
+<li> もしデータが改竄されていれば、ハッシュが合わない。
+<li> もしハッシュが改竄されていれば、公開鍵と合わない。
+</ul>
+<p>
+現実世界では、署名(印鑑)によって書類の正しさを証明する。
+
+<h2>鍵配送の問題</h2>
+<p>
+暗号は、認証と組み合わせて始めて安全になる。
+<p>
+「最初の一回」は、なにか別の方法で確認しなければならない。
+<p>
+「信頼できる第三者」 = 認証局 (Certificate Authority, CA)
+
+<h3>証明書</h3>
+<p>
+証明書: 
+<blockquote class=gray><center>
+“この者の公開鍵がこれであるということを証明する (以下署名)”
+</center></blockquote>
+<p>
+現実世界と同じく、これは階層的になっている。(証明書チェーン)<br>
+天皇 → 総理大臣 → 大臣 → 各管轄区の長 → 担当職員
+<p>
+なぜ証明書を分けるのか?
+<ul>
+<li> リスクを分散するため。
+<li> 効率化のため。(代理店)
+</ul>
+<p>
+証明書には 2種類ある:
+<ul>
+<li> 暗号化だけをおこなうもの。
+<li> 「現実世界との関係」を証明するもの。(登記情報が入っている)
+</ul>
+<p>
+証明書の形式は X.509 という規格で決められている:
+<ul>
+<li> バージョン
+<li> 発行元 (CA)
+<li> 対象
+<li> 有効期限
+</ul>
+<p>
+ルート証明書が偽装されると大変なことになる。
+(2011年、DigiNotar事件)
+
+<h2>インターネットと監視社会</h2>
+<p>
+たとえば Google は、個人が検索したキーワードや見たサイトをすべて記録している。
+「検索エンジンはあなたよりもあなたのことをよく知っている」と言われる。
+2006年、AOL での検索エンジン記録が流出。
+<a href="http://techcrunch.com/2006/08/06/aol-proudly-releases-massive-amounts-of-user-search-data/">記事1</a>, 
+<a href="http://query.nytimes.com/gst/abstract.html?res=9E0CE3DD1F3FF93AA3575BC0A9609C8B63">記事2</a>。
+<p>
+個人情報は金になる。
+宣伝は客の情報を詳しく知っていたほうが有利。
+<a href="http://www.hrks.jp/advertising/ad_list.html">雑誌広告の価格一覧</a>。
+Google AdWords: 1クリック およそ 100円。
+「ネットのものがタダであるとき、売られているのは自分」
+<p>
+2009年ごろ、Stuxnetがイランの各施設を攻撃する。
+その複雑性から政府レベルの関与が疑われた。
+2013年、NSA元職員によるリーク。
+<ul>
+<li> 意図的に破りやすい暗号を策定し、業界標準とした。
+(<a href="https://en.wikipedia.org/wiki/Dual_EC_DRBG">Dual_EC_DRBG</a>)
+<li> 通信産業への執拗な攻撃と侵入。
+(<a href="https://en.wikipedia.org/wiki/PRISM_%28surveillance_program%29">PRISM</a>)
+<li> エア・ギャップされたコンピュータでも
+盗聴できるような「スパイ道具」が大量に開発されている。
+(<a href="https://en.wikipedia.org/wiki/NSA_ANT_catalog">NSA ANT Catalog</a>)
+</ul>
+
+<hr>
+<address>Copyright (c) 2015 Yusuke Shinyama</address>
