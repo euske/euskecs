@@ -16,12 +16,61 @@ p { margin: 0; }
 <h2>コンピュータ・ネットワークとは</h2>
 <p>
 複数のコンピュータどうしを線でつないで通信すること。
+コンピュータにとっては、入出力装置の一種。
+
+<div class=figure>
+  <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="400" height="130">
+    <marker id="arrow" viewBox="-5 -5 10 10">
+      <polygon points="-5,-5 5,0 -5,5" fill="black" stroke="none" />
+    </marker>
+    <g stroke="black" stroke-width="2" fill="none">
+      <ellipse cx="240" cy="70" rx="100" ry="50" />
+      <rect x="10" y="50" width="80" height="40" />
+      <line x1="90" y1="60" x2="140" y2="60" marker-end="url(#arrow)" />
+      <line x1="140" y1="80" x2="90" y2="80" marker-end="url(#arrow)" marker-orientation="0" />
+    </g>
+    <g style="dominant-baseline:central;" text-anchor="middle">
+      <text x="50" y="70">演算装置</text>
+      <text x="240" y="70">ネットワーク</text>
+      <text x="120" y="55">入力</text>
+      <text x="120" y="95">出力</text>
+    </g>
+  </svg>
+</div>
+
 <p>
-「道路」と同じようにインフラの一部。
-<p>
-過去にはいろいろなネットワークがあったが、
+「道路」と同じく、インフラの一部である。
+過去にはいろいろなネットワークが建設されたが、
 現在は「ザ・インターネット (The Internet)」が
 よく使われている。
+
+<div class=figure>
+  <svg xmlns="http://www.w3.org/2000/svg" 
+       xmlns:xlink="http://www.w3.org/1999/xlink"
+       version="1.1" width="400" height="200">
+    <symbol id="computer" fill="none" stroke="black" stroke-width="2">
+      <rect x="10" y="10" width="30" height="20" />
+      <polygon points="10,32 0,40 50,40 40,32" />
+    </symbol>
+    <g stroke="black" stroke-width="2" fill="none">
+      <use xlink:href="#computer" transform="translate(10,100)" />
+      <use xlink:href="#computer" transform="translate(100,40)" />
+      <use xlink:href="#computer" transform="translate(120,120)" />
+      <use xlink:href="#computer" transform="translate(200,160)" />
+      <use xlink:href="#computer" transform="translate(210,50)" />
+      <use xlink:href="#computer" transform="translate(280,100)" />
+      <use xlink:href="#computer" transform="translate(290,10)" />
+      <line x1="50" y1="120" x2="130" y2="140" />
+      <line x1="140" y1="130" x2="120" y2="80" />
+      <line x1="140" y1="60" x2="220" y2="70" />
+      <line x1="150" y1="160" x2="210" y2="180" />
+      <line x1="230" y1="170" x2="240" y2="90" />
+      <line x1="240" y1="180" x2="300" y2="140" />
+      <line x1="305" y1="110" x2="310" y2="50" />
+    </g>
+  </svg>
+</div>
+
 <h4>範囲による分類</h4>
 <ul>
   <li> LAN (Local Area Network) … 局所ネットワーク、ひとつの場所・組織のみ。
@@ -51,7 +100,9 @@ p { margin: 0; }
 
 <h3>どうやって送るのか?</h3>
 <p>
-究極的にはネットワークにはふたつの方式しかない。
+コンピュータ・ネットワークでは、信号線は基本的に 1本しかないのに、
+複数のコンピュータどうしが同時に通信できる。
+これを実現するためには、究極的にはふたつの方式しかない。
 
 <h4>A. 回線交換</h4>
 
