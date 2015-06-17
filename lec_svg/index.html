@@ -359,7 +359,7 @@ XMLでは、複数の異なる規格が、ひとつの文書中に混在する�
 これは線の終端で利用する図形を定義する。
 
 <blockquote class=t><pre>
-&lt;marker id="<u>arrow</u>" viewBox="<u>-5 -5 10 10</u>"&gt;
+&lt;marker id="<u>arrow</u>" viewBox="<u>-5 -5 10 10</u>" orient="auto"&gt;
   <u>&lt;polygon points="-5,-5 5,0 -5,5" fill="black" stroke="none" /&gt;</u>
 &lt;/marker&gt;
 &lt;line x1="10" y1="20" x2="100" y2="20" 
@@ -370,7 +370,7 @@ XMLでは、複数の異なる規格が、ひとつの文書中に混在する�
   <svg xmlns="http://www.w3.org/2000/svg" 
        xmlns:xlink="http://www.w3.org/1999/xlink"
        version="1.1" width="200" height="40">
-    <marker id="arrow" viewBox="-5 -5 10 10">
+    <marker id="arrow" viewBox="-5 -5 10 10" orient="auto">
       <polygon points="-5,-5 5,0 -5,5" fill="black" stroke="none" />
     </marker>
     <line x1="10" y1="20" x2="100" y2="20" 
