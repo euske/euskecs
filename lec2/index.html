@@ -4,6 +4,8 @@
 <title>コンピュータのソフトウェア</title>
 <style><!--
 body { line-height: 1.5; }
+h1 { border-bottom: 4pt solid black; }
+h2 { border-bottom: 2pt solid black; }
 table { border-collapse: collapse; }
 td { padding: 0.5em; text-align: center; }
 img {
@@ -26,14 +28,43 @@ p { margin: 0; }
 <li> プログラム (= 命令の列)
 </ul>
 
-<h3>ソフトウェア上の課題</h3>
+<h2>すべての情報を 0 と 1 であらわす (つづき)</h2>
+
+<h3>文字を 0 と 1 であらわす</h3>
+
+<p>
+数値 = 文字と考え、数値の列を<strong>文字列</strong>とする。
+
 <ul>
-<li> どうやって情報を 0 と 1 であらわすか
-<li> どうやってその 0 と 1 をうまく操作するか
-<li> はやく、やすく、うまく作る
+<li> <strong>ASCII</strong> コード= 0〜127 (1バイト)。
+<li> <strong>Unicode</strong> = 0〜113021 (最高4バイト)。
+<a href="http://www.unicode.org/charts/">Unicode 7.0</a>
+(<a href="http://www.unicode.org/charts/PDF/U0000.pdf">U0000</a>,
+<a href="http://www.unicode.org/charts/PDF/U0900.pdf">U0900</a>,
+<a href="http://www.unicode.org/charts/PDF/U4E00.pdf">U4E00</a>)
+<li> JIS X 0208 = 0x2121〜0x7E7E (2バイト)。
+<a href="http://kikaku.itscj.ipsj.or.jp/ISO-IR/087.pdf">JIS X 0208</a>
+<li> GB 2312 (国標) = 0xA1A1〜0xFEFE (2バイト)。
+<a href="http://itscj.ipsj.or.jp/ISO-IR/058.pdf">GB 2312</a>
 </ul>
 
-<h2>すべての情報を 0 と 1 であらわす (つづき)</h2>
+<h4>テキストファイル</h4>
+
+<div class=figure>
+<a href="ascii.txt">ascii.txt</a>
+<blockquote><pre>
+Hello!
+48 65 6c 6c 6f 21
+</pre></blockquote>
+</div>
+
+<div class=figure>
+<a href="sjis.txt">sjis.txt</a>
+<blockquote><pre>
+日本
+93 fa 96 7b
+</pre></blockquote>
+</div>
 
 <h3>画像を 0 と 1 であらわす</h3>
 <div class=figure>
@@ -140,42 +171,6 @@ p { margin: 0; }
 <a href="https://en.wikipedia.org/wiki/File:JPEG_example_JPG_RIP_001.jpg"><img src="https://upload.wikimedia.org/wikipedia/commons/3/38/JPEG_example_JPG_RIP_001.jpg" width="100"></a>
 </ul>
 
-<h3>文字を 0 と 1 であらわす</h3>
-
-<p>
-数値 = 文字と考え、数値の列を<strong>文字列</strong>とする。
-
-<ul>
-<li> <strong>ASCII</strong> コード= 0〜127 (1バイト)。
-<li> <strong>Unicode</strong> = 0〜113021 (最高4バイト)。
-<a href="http://www.unicode.org/charts/">Unicode 7.0</a>
-(<a href="http://www.unicode.org/charts/PDF/U0000.pdf">U0000</a>,
-<a href="http://www.unicode.org/charts/PDF/U0900.pdf">U0900</a>,
-<a href="http://www.unicode.org/charts/PDF/U4E00.pdf">U4E00</a>)
-<li> JIS X 0208 = 0x2121〜0x7E7E (2バイト)。
-<a href="http://kikaku.itscj.ipsj.or.jp/ISO-IR/087.pdf">JIS X 0208</a>
-<li> GB 2312 (国標) = 0xA1A1〜0xFEFE (2バイト)。
-<a href="http://itscj.ipsj.or.jp/ISO-IR/058.pdf">GB 2312</a>
-</ul>
-
-<h4>テキストファイル</h4>
-
-<div class=figure>
-<a href="ascii.txt">ascii.txt</a>
-<blockquote><pre>
-Hello!
-48 65 6c 6c 6f 21
-</pre></blockquote>
-</div>
-
-<div class=figure>
-<a href="sjis.txt">sjis.txt</a>
-<blockquote><pre>
-日本
-93 fa 96 7b
-</pre></blockquote>
-</div>
-
 <h4>文字の描画と文字認識</h4>
 <ul>
 <li> 文字の描画: 文字コード → ビットマップ → 出力装置
@@ -240,6 +235,11 @@ Hello!
 <p> 完全にはもとに戻らない (非可逆) 圧縮。(人間が気づかない部分を省く)
 </ul>
 
+<h4>音声合成と音声認識</h4>
+<ul>
+<li> 音声合成: 文字コード → 波形データ → 出力装置
+<li> 音声認識: 入力装置 → 波形データ → 文字コード
+</ul>
 
 <h3>プログラムを0と1であらわす</h3>
 <h4>32ビット用プログラム</h4>
@@ -275,10 +275,19 @@ Hello!
 コンピュータ上では、すべての情報は 0 と 1 からなる。
 その意味は、<strong>解釈する方法によって決まる</strong>。
 <ul>
-<li> ファイルの「拡張子」
+<li> Windowsは、ファイルの「拡張子」によって、
+その情報をどうやって表示するかを決めている。
+<li> <a href="http://www.zob.ne.jp/~c.mos/">Bzユーティリティ</a> (ファイルの中身を 16進数で表示)
 </ul>
 
 <h2>オペレーティングシステムとは</h2>
+
+<h3>ソフトウェア上の課題</h3>
+<ul>
+<li> どうやって情報を 0 と 1 であらわすか
+<li> どうやってその 0 と 1 をうまく操作するか
+<li> はやく、やすく、うまく作る
+</ul>
 
 <h3>ソフトウェアの階層</h3>
 <ul>
