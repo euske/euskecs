@@ -8,6 +8,7 @@ h1 { border-bottom: 4pt solid black; }
 h2 { border-bottom: 2pt solid black; }
 table { border-collapse: collapse; }
 td { padding: 0.2em; }
+.nav { font-size: 80%; }
 .figure { margin: 0.5em; padding: 0.5em; border: 1px solid gray; }
 --></style>
 <script language="javascript" src="../js/offline.js"></script>
@@ -15,14 +16,24 @@ td { padding: 0.2em; }
 <body>
 <h1>コンピュータのハードウェア</h1>
 
-<h2>コンピュータの原理</h2>
+<div class=nav>
+<a href="#computer-principle">[コンピュータの原理]</a>
+<a href="#computer-components">[4つの装置]</a>
+<a href="#express-in-binary">[すべての情報を 0 と 1 であらわす]</a>
+<a href="#bus-and-clock">[バスとクロック]</a>
+<a href="#storage-device">[記憶装置]</a>
+<a href="#operation-device">[演算装置]</a>
+<a href="#about-units">[単位の表し方]</a>
+</div>
+
+<h2><a name="computer-principle">コンピュータの原理</a></h2>
 <p>
 おそろしく単純な動作 (後述) を大量に組み合わせて、複雑な処理をおこなう。
 <ul>
 <li> 単純な操作 × 膨大な数 = 複雑な処理
 </ul>
 
-<h2>4つの装置</h2>
+<h2><a name="computer-components">4つの装置</a></h2>
 <p>
 すべてのコンピュータは
 以下の4つの装置から成り立っている。
@@ -78,7 +89,7 @@ td { padding: 0.2em; }
 </ul>
 
 
-<h2>すべての情報を 0 と 1 であらわす</h2>
+<h2><a name="express-in-binary">すべての情報を 0 と 1 であらわす</a></h2>
 <p>
 数字、文字、画像、音声などをコンピュータで扱うためには、
 これらの情報をすべて 0 と 1 だけで表す必要がある。
@@ -121,7 +132,7 @@ td { padding: 0.2em; }
   8ビット = 8桁の2進数で表せる情報 (256通り)。16進数だと2桁で表せる。
 </ul>
 
-<h2>バスとクロック</h2>
+<h2><a name="bus-and-clock">バスとクロック</a></h2>
 <p>
 実際には、コンピュータの各装置は次のように接続されている。
 
@@ -213,7 +224,7 @@ td { padding: 0.2em; }
 <p>
 1秒間あたりのクロックの拍数 (Hz) を、動作周波数という。
 
-<h2>記憶装置</h2>
+<h2><a name="storage-device">記憶装置</a></h2>
 <p>
 記憶装置には半導体による主記憶装置 (メモリ) と
 磁気を使った二次記憶装置 (ハードディスクなど) がある。<br>
@@ -270,7 +281,7 @@ td { padding: 0.2em; }
 → 64ビット版のほうが多くのメモリを扱え、一度に多くのデータを処理できる。
 
 
-<h2>演算装置</h2>
+<h2><a name="operation-device">演算装置</a></h2>
 
 <p>
 演算装置の役割…
@@ -451,7 +462,7 @@ td { padding: 0.2em; }
 ハードウェアはますます一般化し、
 ソフトウェアが重要な時代になっている。
 
-<h2>単位の表し方</h2>
+<h2><a name="about-units">単位の表し方</a></h2>
 <p>
 現在のコンピュータは、1秒間に約1,000,000,000回の信号を処理できる。<br>
 これは、1回の処理に 0.000 000 001秒かかることを意味する。

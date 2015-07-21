@@ -9,6 +9,7 @@ h2 { border-bottom: 2pt solid black; }
 table { border-collapse: collapse; }
 td { padding: 0.5em; text-align: center; }
 p { margin: 0; }
+.nav { font-size: 80%; }
 .figure { margin: 0.5em; padding: 0.5em; border: 1px solid gray; }
 --></style>
 <script language="javascript" src="../js/offline.js"></script>
@@ -16,7 +17,20 @@ p { margin: 0; }
 <body>
 <h1>コンピュータ・ネットワーク</h1>
 
-<h2>コンピュータ・ネットワークとは</h2>
+<div class=nav>
+<a href="#network-use">[なにに使うのか?]</a>
+<a href="#how-to-send">[どうやって送るのか?]</a>
+<a href="#network-challenges">[課題]</a>
+<a href="#network-layers">[基本的なしくみ]</a>
+<a href="#datalink-layer">[データリンク層]</a>
+<a href="#network-layer">[ネットワーク層]</a>
+<a href="#application-layer">[アプリケーション層]</a>
+<a href="#computer-security">[セキュリティとは何か?]</a>
+<a href="#network-security">[ネットワークのセキュリティ]</a>
+<a href="#internet-surveillance">[監視社会]</a>
+</div>
+
+<h2><a name="computer-network">コンピュータ・ネットワークとは</a></h2>
 <p>
 複数のコンピュータどうしを線でつないで通信すること。
 コンピュータにとっては、入出力装置の一種。
@@ -77,7 +91,7 @@ p { margin: 0; }
   </svg>
 </div>
 
-<h3>なにに使うのか?</h3>
+<h3><a name="network-use">なにに使うのか?</a></h3>
 <ul>
 <li> 個人用
 <ul>
@@ -98,7 +112,7 @@ p { margin: 0; }
 </ul>
 </ul>
 
-<h3>どうやって送るのか?</h3>
+<h3><a name="how-to-send">どうやって送るのか?</a></h3>
 <p>
 信号線は基本的に 1本しかないのに、
 複数のコンピュータどうしが同時に双方向で通信できる。
@@ -164,7 +178,7 @@ p { margin: 0; }
 </ul>
 
 
-<h2>ネットワークにおける課題</h2>
+<h2><a name="network-challenges">ネットワークにおける課題</a></h2>
 <p>
 ネットワークは構築するのが大変だ。(道路と同じ)
 <ul>
@@ -187,19 +201,30 @@ p { margin: 0; }
 <p>
 テレビと比較すると、インターネットでは上の要素はどれも可変である。
 唯一の規格はパケット送受信の方式 (プロトコル) だけ。
-<p>
-(電気を使わなくてもかまわない:
-<a href="http://www.blug.linux.no/rfc1149/">http://www.blug.linux.no/rfc1149/</a>)
 
-<h2>コンピュータ・ネットワークの基本的なしくみ</h2>
+<h2><a name="network-layers">コンピュータ・ネットワークの基本的なしくみ</a></h2>
 
-<h3>Ethernet (データリンク層)</h3>
+<h3><a name="datalink-layer">Ethernet (データリンク層)</a></h3>
 <p>
 MACアドレスで各機器を識別する。
 ブロードキャストが基本。
 無線LANもEthernetの一種。
+<p>
+(電気を使わなくてもかまわない:
+<a href="http://www.blug.linux.no/rfc1149/">http://www.blug.linux.no/rfc1149/</a>)
 
-<h3>IP層 (ネットワーク層)</h3>
+<h4>海底ケーブル</h4>
+<ul>
+<li> <a href="https://www.telegeography.com/telecom-resources/map-gallery/index.html">海底ケーブル地図</a>
+<li> <a href="https://en.wikipedia.org/wiki/SEA-ME-WE_3_%28cable_system%29">SEA-ME-WE</a> 
+(全長39,000キロ、世界最長, 960Gbps)
+<li> <a href="https://en.wikipedia.org/wiki/Unity_%28submarine_cable%29">Unity</a>
+(全長10,000キロ、日本-米国, 7.68Tbps)
+<li> <a href="http://image.guardian.co.uk/sys-images/Technology/Pix/pictures/2008/02/01/SeaCableHi.jpg">帯域のうち72%がインターネットに使われている</a>
+<li> <a href="http://jpn.nec.com/profile/mitatv/discover/01_sequel/index.html">海底ケーブルの秘密に迫る</a> (NEC)
+</ul>
+
+<h3><a name="network-layer">IP層 (ネットワーク層)</a></h3>
 <P>
 データ (0/1) が2点間で信頼できる方法で送れるようになったら、
 次はそれを使って離れた地点にパケットを送る。
@@ -229,6 +254,11 @@ IPアドレスが必要である。→ アドレスが足りない。
 <li> ...
 </ul>
 
+<h4>TCP層 (トランスポート層)</h4>
+<p>
+送られてきたパケットをつなぎ合わせて、仮想回線を構築する。
+
+
 <h4>ルータ</h4>
 <p>
 IPパケットは、複数台のコンピュータを経由して転送される。
@@ -247,7 +277,7 @@ IPパケットは、複数台のコンピュータを経由して転送される
 <li> 家庭用ルータの機能: モデム機能, 無線アクセスポイント, etc.
 </ul>
 
-<h3>サーバ</h3>
+<h4>サーバ</h4>
 <ul>
 <li> クライアント・サーバ … 「サービス」と「客」が存在する。
 <ul>
@@ -279,7 +309,7 @@ IPパケットは、複数台のコンピュータを経由して転送される
 <p>
 サーバ上でサービスを提供することを「クラウド (cloud) サービス」と呼んだりする。
 
-<h3>アプリケーション層</h2>
+<h3><a name="application-layer">アプリケーション層</a></h2>
 
 <h4>World Wide Web (WWW)</h4>
 <ol>
@@ -314,9 +344,23 @@ IPパケットは、複数台のコンピュータを経由して転送される
 "<code>mail.example.com</code>" と通信し、そのサーバ上に登録されている
 ユーザ "<code>shinyama</code>" 宛に電子メールの本文を送信する。
 
-<h2>セキュリティとは何か?</h2>
+<h2><a name="computer-security">セキュリティとは何か?</a></h2>
 
-<h3>コンピュータセキュリティの価値</h3>
+<h4>セーフティとセキュリティ</h4>
+<ul>
+<li> safety (安全) … 事故・災害から身を守る。 (例. 柵、防火扉)
+<li> security (安定) … 犯罪・社会から身を守る。 (例. 金庫、防犯カメラ)
+  <p> 相手は人間だから難しい。
+</ul>
+
+<h4>セキュリティの要件</h4>
+<ul>
+<li> 機密性 (Secrecy) … 知られたくないことを守る。
+<li> 完全性 (Integrity) … 勝手に書き換えられないようにする。
+<li> 可用性 (Availability) … 必要なときにいつでも使える。
+</ul>
+
+<h4>コンピュータセキュリティの価値</h4>
 <p>
 <a href="http://krebsonsecurity.com/2012/10/the-scrap-value-of-a-hacked-pc-revisited/">ハックされたPCの価値</a>。
 <ul>
@@ -339,10 +383,13 @@ IPパケットは、複数台のコンピュータを経由して転送される
 </ul>
 
 
-<h2>ネットワークのセキュリティ</h2>
+<h2><a name="network-security">ネットワークのセキュリティ</a></h2>
+<p>
+コンピュータネットワークのセキュリティは、
+コンピュータ全体のセキュリティのうちのごく一部。
 <p>
 TCP/IPでは、データは信頼性ある方法で通信できるが、通信が安全かはわからない。
-ルータはパケットを中継しているため、途中で流れている情報を盗み見ることができる。
+(ルータはパケットを中継しているため、途中で流れている情報を盗み見ることができる。)
 
 <ul>
 <li> 盗聴
@@ -385,7 +432,7 @@ HTTPS を使っているところも多い。
 パソコンを信じる → ブラウザを信じる → 暗号を信じる → シマンテックを信じる → Paypalを信じる。
 
 
-<h2>インターネットと監視社会</h2>
+<h2><a name="internet-surveillance">インターネットと監視社会</a></h2>
 <h3>検索エンジンによる情報の漏洩</h3>
 <p>
 たとえば Google は、個人が検索したキーワードや見たサイトをすべて記録している。

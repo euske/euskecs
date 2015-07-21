@@ -8,6 +8,7 @@ h1 { border-bottom: 4pt solid black; }
 h2 { border-bottom: 2pt solid black; }
 ul { margin-bottom: 0.5em; }
 dd { margin-bottom: 0.5em; }
+.nav { font-size: 80%; }
 .pb { page-break-before: always; }
 .css { background: #ffffcc; }
 .typed { background: #eeeeee; }
@@ -17,7 +18,17 @@ dd { margin-bottom: 0.5em; }
 <body>
 <h1>HTML/CSS入門</h1>
 
-<h2>HTMLとは</h2>
+<div class=nav>
+<a href="#wtf-is-xml">[XMLとは]</a>
+<a href="#xml-not-html">[HTML以外のXMLの用途]</a>
+<a href="#html-structure">[HTMLの基本的な構造]</a>
+<a href="#common-html-tags">[よく使うHTMLタグ]</a>
+<a href="#html-table">[表の書き方]</a>
+<a href="#what-is-css">[CSSとは]</a>
+<a href="#html-tips">[その他]</a>
+</div>
+
+<h2><a name="what-is-html">HTMLとは</a></h2>
 <p>
 Hyper Text Markup Language の略。
 Webページの記述に用いられる。
@@ -30,7 +41,7 @@ Webページの記述に用いられる。
 <p>
 <a href="http://www.tohoho-web.com/www.htm">とほほのWWW入門</a>
 
-<h3>XMLとは</h3>
+<h3><a name="wtf-is-xml">XMLとは</a></h3>
 <ul>
 <li> 「<u>マークアップ言語</u>」である。
 <li> 「入れ子構造」をもつ。
@@ -53,7 +64,7 @@ Webページの記述に用いられる。
 タグで囲まれた部分を<u>マークアップされた部分</u>と呼ぶ。
 また、このタグを含めた部分を<u>要素</u>と呼ぶ。
 
-<h3>HTML以外のXMLの用途</h3>
+<h3><a name="xml-not-html">HTML以外のXMLの用途</a></h3>
 <ul>
 <li> SVG (図形を記述する)
 <li> MathML (数式を記述する)
@@ -63,7 +74,7 @@ Webページの記述に用いられる。
 <p>
 <a href="https://en.wikipedia.org/wiki/List_of_XML_markup_languages">XMLを使った言語の一覧</a>
 
-<h2 class=pb>HTMLの基本的な構造</h2>
+<h2 class=pb><a name="html-structure">HTMLの基本的な構造</a></h2>
 <h3>お約束</h3>
 <blockquote class=typed><pre>
 &lt;!DOCTYPE html&gt;
@@ -128,7 +139,7 @@ World
 </tr>
 </table>
 
-<h2 class=pb>よく使うHTMLタグ</h2>
+<h2 class=pb><a name="common-html-tags">よく使うHTMLタグ</a></h2>
 <h3>見出しと段落</h3>
 <ul>
 <li> 段落 (paragraph): <code>&lt;p&gt;</code> ... <u><code>&lt;/p&gt;</code></u> 
@@ -226,7 +237,7 @@ World
 改<br>行
 </blockquote>
 
-<h2 class=pb>表の書き方</h2>
+<h2 class=pb><a name="html-table">表の書き方</a></h2>
 <h3>使用するタグ</h3>
 <ul>
 <li> <code>&lt;table&gt;</code> 〜 <code>&lt;/table&gt;</code> :
@@ -277,7 +288,7 @@ World
 </table>
 </blockquote>
 
-<h2 class=pb>CSSとは</h2>
+<h2 class=pb><a name="what-is-css">CSSとは</a></h2>
 <p>
 Cascading Style Sheet の略。単に「スタイルシート」とも呼ばれる。
 各HTMLタグがマークアップする部分の見た目を指定する。
@@ -426,7 +437,7 @@ ul { margin-bottom: 0.5em; }
 &lt;/style&gt;
 </pre></blockquote>
 
-<h2>その他</h2>
+<h2><a name="html-tips">その他</a></h2>
 <h3>CSS用のタグ</h3>
 <code>&lt;div&gt;</code>タグ、
 <code>&lt;span&gt;</code>タグは、

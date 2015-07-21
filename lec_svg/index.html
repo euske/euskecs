@@ -9,6 +9,7 @@ h2 { border-bottom: 2pt solid black; }
 ul { margin-bottom: 0.5em; }
 dd { margin-bottom: 0.5em; }
 b { color: red; font-weight: bold; text-decoration: underline; }
+.nav { font-size: 80%; }
 .pb { page-break-before: always; }
 code, .t { background: #eeeeee; }
 --></style>
@@ -16,16 +17,27 @@ code, .t { background: #eeeeee; }
 </head>
 <body>
 <h1>SVG入門</h1>
-<p>
-新山 祐介
 
-<h2>SVGとは</h2>
+<div class=nav>
+<a href="#basic-svg">[基本構造]</a>
+<a href="#xml-namespaces">[XML名前空間について]</a>
+<a href="#basic-shapes">[基本的な図形]</a>
+<a href="#svg-and-css">[CSSとの組み合わせ]</a>
+<a href="#grouping">[グループ化]</a>
+<a href="#svg-transform">[拡大縮小・移動・回転]</a>
+<a href="#svg-element-reuse">[再利用]</a>
+<a href="#insert-images">[画像の挿入]</a>
+<a href="#svg-tools">[SVGを作成するツール]</a>
+</div>
+
+<h2><a name="wtf-is-svg">SVGとは</a></h2>
 <p>
 Scalable Vector Graphics の略。
-現在はメジャーなブラウザでサポートされている。
 XMLの一種。
+図形を記述することができる。
+現在はメジャーなブラウザでサポートされている。
 
-<h2>基本構造</h2>
+<h2><a name="basic-svg">基本構造</a></h2>
 <h4>XHTMLの一部として埋め込む方法:</h4>
 <blockquote class=t><pre>
 &lt;!DOCTYPE html&gt;
@@ -69,7 +81,7 @@ SVGは、HTMLの <code>&lt;img src="..."&gt;</code> タグの画像として利�
 <a href="https://gist.githubusercontent.com/johan/1007813/raw/1f883261b243111b00d932d6033a8b538b1ecae7/octocat.svg"><img src="https://gist.githubusercontent.com/johan/1007813/raw/1f883261b243111b00d932d6033a8b538b1ecae7/octocat.svg" alt="オクトキャット" width="100" /></a>
 </blockquote>
 
-<h2>XML名前空間について</h2>
+<h2><a name="xml-namespaces">XML名前空間について</a></h2>
 <p>
 XMLでは、複数の異なる規格が、ひとつの文書中に混在することがある。
 <p>
@@ -119,7 +131,7 @@ XMLでは、複数の異なる規格が、ひとつの文書中に混在する�
 </pre></blockquote>
 
 
-<h2>基本的な図形</h2>
+<h2><a name="basic-shapes">基本的な図形</a></h2>
 
 <h3>矩形 (rect)</h3>
 <blockquote class=t><pre>
@@ -242,7 +254,7 @@ XMLでは、複数の異なる規格が、ひとつの文書中に混在する�
 <p>
 <strong>注意:</strong> HTMLと違い、複数行にわたる文字は一度に書けない。
 
-<h2>CSSとの組み合わせ</h2>
+<h2><a name="svg-and-css">CSSとの組み合わせ</a></h2>
 <p>
 どの要素 (おもに <code>&lt;text&gt;</code>) も、
 <code>style="<u>...</u>"</code> で CSS 属性をつけることができる。
@@ -261,7 +273,7 @@ XMLでは、複数の異なる規格が、ひとつの文書中に混在する�
   </svg>
 </blockquote>
 
-<h2>グループ化</h2>
+<h2><a name="grouping">グループ化</a></h2>
 <p>
 <code>&lt;g&gt;</code> 〜 <code>&lt;/g&gt;</code> で囲んだ部分は、
 同じ属性値が適用される。
@@ -286,7 +298,7 @@ XMLでは、複数の異なる規格が、ひとつの文書中に混在する�
   </svg>
 </blockquote>
 
-<h2>拡大縮小・移動・回転</h2>
+<h2><a name="svg-transform">拡大縮小・移動・回転</a></h2>
 <p>
 要素に
 <code>transform="<u>...</u>"</code> 属性をつけると、 
@@ -323,7 +335,7 @@ XMLでは、複数の異なる規格が、ひとつの文書中に混在する�
 ひとつの <code>transform</code> 属性の中に
 複数の指定を空白で区切って入れることも可能。
 
-<h2>再利用</h2>
+<h2><a name="svg-element-reuse">再利用</a></h2>
 <p>
 すべての要素には <code>id="..."</code> 属性をつけておき、何度でも再利用できる。
 <p>
@@ -397,7 +409,7 @@ XMLでは、複数の異なる規格が、ひとつの文書中に混在する�
 ここでは <code>url(...)</code> が必要。
 </ul>
 
-<h2>画像の挿入</h2>
+<h2><a name="insert-images">画像の挿入</a></h2>
 <blockquote class=t><pre>
 &lt;image x="0" y="0" width="320" height="220" xlink:href="image.jpg" /&gt;
 &lt;text x="160" y="200" text-anchor="middle" fill="white"
@@ -425,7 +437,7 @@ XMLでは、複数の異なる規格が、ひとつの文書中に混在する�
 </ul>
 
 
-<h2>SVGを作成するツール</h2>
+<h2><a name="svg-tools">SVGを作成するツール</a></h2>
 <p>
 手で全部入力するのが面倒くさいときは、
 ツールで作成して貼りつければよい。
@@ -445,7 +457,7 @@ XMLでは、複数の異なる規格が、ひとつの文書中に混在する�
 <li> <a href="http://www.draw.io/">draw.io</a>
 </ul>
 
-<h2>参考資料</h2>
+<h3>参考資料</h3>
 <ul>
 <li> <a href="https://developer.mozilla.org/en-US/docs/Web/SVG">SVG</a> (Mozilla)
 <li> <a href="http://www.atmarkit.co.jp/ait/articles/1206/01/news143.html">10分でわかるSVG</a> (atkarmkit)

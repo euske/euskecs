@@ -15,14 +15,24 @@ img {
         image-rendering: crisp-edges;
 }
 p { margin: 0; }
+.nav { font-size: 80%; }
 .figure { margin: 0.5em; padding: 0.5em; border: 1px solid gray; }
 --></style>
 <script language="javascript" src="../js/offline.js"></script>
 </head>
 <body>
 <h1>コンピュータのソフトウェア</h1>
+<div class=nav>
+<a href="#chars-in-binary">[文字を 0 と 1 であらわす]</a>
+<a href="#image-in-binary">[画像を 0 と 1 であらわす]</a>
+<a href="#audio-in-binary">[音声を 0 と 1 であらわす]</a>
+<a href="#programs-in-binary">[プログラムを0と1であらわす]</a>
+<a href="#data-format">[データ形式]</a>
+<a href="#what-is-os">[オペレーティングシステムとは]</a>
+<a href="#software-metaphor">[ソフトウェアと比喩]</a>
+</div>
 
-<h2>ソフトウェアとは?</h2>
+<h2><a name="what-is-software">ソフトウェアとは?</a></h2>
 <ul>
 <li> ソフトウェア (変更可能) ⇔ ハードウェア (変更不可能)
 <li> プログラム (= 命令の列)
@@ -30,7 +40,7 @@ p { margin: 0; }
 
 <h2>すべての情報を 0 と 1 であらわす (つづき)</h2>
 
-<h3>文字を 0 と 1 であらわす</h3>
+<h3><a name="chars-in-binary">文字を 0 と 1 であらわす</a></h3>
 
 <p>
 数値 = 文字と考え、数値の列を<strong>文字列</strong>とする。
@@ -66,7 +76,7 @@ Hello!
 </pre></blockquote>
 </div>
 
-<h3>画像を 0 と 1 であらわす</h3>
+<h3><a name="image-in-binary">画像を 0 と 1 であらわす</a></h3>
 <div class=figure>
 <svg xmlns="http://www.w3.org/2000/svg" 
      xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -177,7 +187,7 @@ Hello!
 <li> 文字の認識: 入力装置 → ビットマップ → 文字コード
 </ul>
 
-<h3>音声を 0 と 1 であらわす</h3>
+<h3><a name="audio-in-binary">音声を 0 と 1 であらわす</a></h3>
 
 <p>音とは何か?
 <div class=figure>
@@ -241,7 +251,8 @@ Hello!
 <li> 音声認識: 入力装置 → 波形データ → 文字コード
 </ul>
 
-<h3>プログラムを0と1であらわす</h3>
+<h3><a name="programs-in-binary">プログラムを0と1であらわす</a></h3>
+
 <h4>32ビット用プログラム</h4>
 <blockquote style="font-size:80%; background:#eeeeee;"><pre>
   00401066: 57                 push        edi
@@ -270,7 +281,7 @@ Hello!
 </pre></blockquote>
  
 
-<h3>データ形式</h3>
+<h3><a name="data-format">データ形式</a></h3>
 <p>
 コンピュータ上では、すべての情報は 0 と 1 からなる。
 その意味は、<strong>解釈する方法によって決まる</strong>。
@@ -280,7 +291,7 @@ Hello!
 <li> <a href="http://www.vector.co.jp/soft/win95/util/se032859.html">Bzユーティリティ</a> (ファイルの中身を 16進数で表示)
 </ul>
 
-<h2>オペレーティングシステムとは</h2>
+<h2><a name="what-is-os">オペレーティングシステムとは</a></h2>
 
 <h3>ソフトウェア上の課題</h3>
 <ul>
@@ -354,7 +365,7 @@ Hello!
 こうした「コンピュータをコンピュータとして認識させない」傾向は
 とくに Apple製品で顕著である。
 
-<h2>ソフトウェアと比喩</h2>
+<h2><a name="software-metaphor">ソフトウェアと比喩</a></h2>
 <p>
 コンピュータ上で使われる「ファイル」「電子メール」などの単語は、
 現実世界での日本語とは違う意味をもっている。
