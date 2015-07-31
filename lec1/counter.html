@@ -1,9 +1,11 @@
 <!DOCTYPE html><!-- -*- javascript -*- -->
 <html>
 <head>
+<title>2進数、8進数、10進数、16進数カウンタ</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <style><!--
+h1 { border-bottom: 4pt solid black; }
 .digit { font-family: Courier New, Courier, monospace; font-weight: 900; font-size: 38px; }
 --></style>
 <script type="text/javascript">
@@ -118,19 +120,19 @@ function changeSel() {
     counter = null;
   }
   switch (v) {
-  case "Base 16":
+  case "16":
     counter = new Counter(div, dec, 16, 8, 20, 40);
     counter.start(15, 2);
     break;
-  case "Base 10":
+  case "10":
     counter = new Counter(div, dec, 10, 8, 20, 40);
     counter.start(15, 1);
     break;
-  case "Base 8":
+  case "8":
     counter = new Counter(div, dec, 8, 8, 20, 40);
     counter.start(15, 1);
     break;
-  case "Base 2":
+  case "2":
     counter = new Counter(div, dec, 2, 8, 20, 40);
     counter.start(15, 0.5);
     break;
@@ -151,17 +153,18 @@ function changeVis() {
 }
 //]]>
 </script>
-<body onload="changeSel(); changeVis(); changeRun();" >
+  <body onload="changeSel(); changeVis(); changeRun();" >
+  <h1>2進数、8進数、10進数、16進数カウンタ</h1>
   <div>
   <select id="selBase" onchange="changeSel(); changeRun();">
-  <option>Select</option>
-  <option>Base 10</option>
-  <option>Base 8</option>
-  <option>Base 2</option>
-  <option>Base 16</option>
+  <option>選択</option>
+  <option value="10">10進数</option>
+  <option value="8">8進数</option>
+  <option value="2">2進数</option>
+  <option value="16">16進数</option>
   </select> &nbsp;
-  <label><input id="checkRun" type=checkbox onchange="changeRun();"> Running</label>
-  <label><input id="checkVis" type=checkbox onchange="changeVis();"> Show decimal</label>
+  <label><input id="checkRun" type=checkbox onchange="changeRun();"> 動作中</label>
+  <label><input id="checkVis" type=checkbox onchange="changeVis();"> 10進数を表示</label>
   </div>
   <div style="position:relative; margin:1em; height:5em;">
   <div id="divCounter" style="position:absolute; left:0px; top:0px;"></div>
