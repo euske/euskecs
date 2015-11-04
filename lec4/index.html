@@ -75,7 +75,7 @@ p { margin: 0; }
 
 <h3>Windows 用のプログラム <code>abc.exe</code></h3>
 <ul>
-<li> バイナリエディタで 0 と 1 を見てみる。
+<li> バイナリエディタで 0 と 1 を見てみる。これはすべて手続き (<u>命令の列</u>) をあらわす。
 <li> 「<code>abc</code>」の部分を「<code>123</code>」に書き換えてみる。
 <li> 「<code>abc</code>」の部分を「<code>hello world</code>」に書き換えてみる。
 </ul>
@@ -127,22 +127,74 @@ p { margin: 0; }
 演算装置が直接 0 と 1 を解釈する。
 <ul>
 <li> 非常に簡単なことしかできない。
-<li> 書くのが大変。
+<li> プログラムを作るのが大変。
 <li> 通常は<u>コンパイラ</u>を使ってプログラミング言語から 0 と 1 に変換する。
 </ul>
+
+<div class=figure>
+  <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="300" height="160">
+    <marker id="arrow" viewBox="-5 -5 10 10" orient="auto">
+      <polygon points="-5,-5 5,0 -5,5" fill="black" stroke="none" />
+    </marker>
+    <g stroke="black" fill="none" stroke-width="2">
+      <rect x="10" y="30" width="80" height="30" />
+      <rect x="10" y="60" width="80" height="30" />
+      <rect x="10" y="90" width="80" height="30" />
+      <rect x="10" y="120" width="80" height="30" />
+      <rect x="155" y="30" width="100" height="60" />
+      <line x1="90" y1="45" x2="150" y2="45" marker-end="url(#arrow)" />
+    </g>
+    <g style="dominant-baseline:central;" text-anchor="middle">
+      <text x="50" y="20">プログラム</text>
+      <text x="50" y="50" style="font-size:80%;">命令</text>
+      <text x="50" y="80" style="font-size:80%;">...</text>
+      <text x="205" y="60">演算装置</text>
+    </g>
+  </svg>
+</div>
 
 <h4>方式2. ソフトウェアによる実行 (インタプリタ、VMあるいはエミュレータ)</h4>
 <p>
 ソフトウェアがプログラミング言語を解釈する。
-このソフトウェアそのものネイティブで実行される (演算装置が解釈する)。
+このソフトウェア (プログラム) そのものは
+ハードウェアの演算装置によって解釈される。
 <ul>
-<li> 書きやすい。
+<li> プログラムを作りやすい。
 <li> 効率は悪い (二重に解釈されるため)
 </ul>
+
+<div class=figure>
+  <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="440" height="160">
+    <marker id="arrow" viewBox="-5 -5 10 10" orient="auto">
+      <polygon points="-5,-5 5,0 -5,5" fill="black" stroke="none" />
+    </marker>
+    <g stroke="black" fill="none" stroke-width="2">
+      <rect x="10" y="30" width="80" height="30" />
+      <rect x="10" y="60" width="80" height="30" />
+      <rect x="10" y="90" width="80" height="30" />
+      <rect x="10" y="120" width="80" height="30" />
+      <rect x="160" y="30" width="100" height="60" stroke-dasharray="2,2" />
+      <rect x="155" y="25" width="110" height="80" />
+      <rect x="330" y="25" width="100" height="60" />
+      <line x1="90" y1="45" x2="155" y2="45" marker-end="url(#arrow)" />
+      <line x1="265" y1="45" x2="325" y2="45" marker-end="url(#arrow)" />
+    </g>
+    <g style="dominant-baseline:central;" text-anchor="middle">
+      <text x="50" y="20">プログラム</text>
+      <text x="50" y="50" style="font-size:80%;">命令</text>
+      <text x="50" y="80" style="font-size:80%;">...</text>
+      <text x="210" y="55">架空の</text>
+      <text x="210" y="75">演算装置</text>
+      <text x="210" y="120" style="font-size:80%;">(プログラム)</text>
+      <text x="380" y="60">演算装置</text>
+    </g>
+  </svg>
+</div>
 
 <h3>プログラミング言語</h3>
 <p>
 実行方式と用途によって、プログラミング言語を使いわける。
+どの言語も、基本的には命令の列を記述するためのものである。
 <ul>
 <li> ある言語を使うと、プログラムが短くてすむが、実行が遅い。
 <li> ある言語を使うと、プログラムが速く実行できるが、複雑でわかりにくい。
