@@ -10,13 +10,18 @@ h3 { border-bottom: 1pt solid black; }
 table { border-collapse: collapse; }
 td { padding: 0.5em; text-align: center; }
 p { margin: 0; }
+pre { margin: 0; }
 .nav { font-size: 80%; }
 .figure { margin: 0.5em; padding: 0.5em; border: 1px solid gray; }
 .source { font-size: 80%; background:#eee; }
+.ascii { background:#eee; border: 1px solid black; padding: 0.5em; }
 --></style>
 <script language="javascript" src="../js/offline.js"></script>
 </head>
 <body>
+<div class=nav>
+<a href="../index.html">コンピュータサイエンス入門・トップへ</a>
+</div>
 <h1>プログラムを作るとはどういうことか</h1>
 
 <div class=nav>
@@ -260,11 +265,49 @@ var s = ""; for (var i = 0; i &lt; 10; i++) { s += "*"; console.log(s); }
 <strong>例1:</strong>
 n 個の * をつなげて三角形を表示する。
 この三角形を右寄せにするためには、何個の空白をつければよいか?
+<div class=figure>
+<table><tr><td><pre class=ascii>
+*    
+**   
+***  
+**** 
+*****
+</pre></td><td valign=center>
+&rarr;
+</td><td><pre class=ascii>
+    *
+   **
+  ***
+ ****
+*****
+</pre></td></tr></table>
+</div>
+
 <p>
 <strong>例2:</strong>
-幅w1×高さh1ピクセルの画像を幅 w2×高さh2のウインドウに表示したい。
-縦が長いとすると、横は何ピクセルに縮小すればよいか?
+幅<em>w<sub>1</sub></em>ピクセル &times; 高さ<em>h<sub>1</sub></em>ピクセルの
+縦長の画像がある。これを、
+幅<em>w<sub>2</sub></em>ピクセル &times; 高さ<em>h<sub>2</sub></em>ピクセルの
+横長のウィンドウにフィットするように表示したい。
+横幅は何ピクセルに縮小すればよいか?
 
+<div class=figure>
+<svg xmlns="http://www.w3.org/2000/svg" 
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     version="1.1" width="700" height="170">
+  <marker id="arrow" viewBox="-5 -5 10 10" orient="auto">
+    <polygon points="-5,-5 5,0 -5,5" fill="black" stroke="none" />
+  </marker>
+  <g fill="none" stroke="black">
+    <image x="10" y="10" width="120" height="160" xlink:href="image.jpg" />
+    <rect x="10" y="10" width="120" height="160" />
+    <image x="217" y="40" width="75" height="100" xlink:href="image.jpg" />
+    <rect x="180" y="40" width="150" height="100" />
+    <rect x="178" y="30" width="154" height="112" />
+    <line x1="140" y1="90" x2="165" y2="90" stroke-width="2" marker-end="url(#arrow)" />
+  </g>
+</svg>
+</div>
 
 <h2><a name="common-sense">プログラミングと常識</a></h2>
 <p>
